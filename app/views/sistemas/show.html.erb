@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @sistema.nome %>
+</p>
+
+<p>
+  <strong>Sigla:</strong>
+  <%= @sistema.sigla %>
+</p>
+
+<%= link_to 'Editar', edit_sistema_path(@sistema), class:"btn btn-warning active" %>
+<%= link_to 'Voltar', sistemas_path, class:"btn btn-info active" %>

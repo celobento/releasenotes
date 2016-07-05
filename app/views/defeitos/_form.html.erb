@@ -1,0 +1,26 @@
+<%= form_for(@defeito) do |f| %>
+  
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Defeito</h3>
+  </div>
+  <div class="panel-body">
+    <div class="conteiner">
+      <div class="field">
+        <%= f.label :release_note_id %><br>
+        <output type="text" class="form-control" id="nome" ><%= @release_note.sistema.nome %></output>
+        <%= f.hidden_field :release_note_id, :value => @release_note.id %>
+      </div>
+      <div class="field">
+        <%= f.label :descricao %><br>
+        <%= f.text_area :descricao, class:"form-control" %>
+      </div>
+      
+    </div>
+  </div>
+</div>
+<div class="actions">
+  <%= f.submit "Salvar", class:"btn btn-primary" %>
+  <%= link_to 'Voltar', edit_release_note_path(@release_note, tab:"defeitos"), class:"btn btn-info active" %>
+</div>
+<% end %>

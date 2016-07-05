@@ -1,0 +1,116 @@
+<% provide(:title, "#{texto_da_acao} Release Notes" ) %>
+
+<%= form_for(@release_note) do |f| %>
+  
+  <style>
+    .button-add-tab{
+      padding: 10px 0px;
+    }
+  </style>
+ 
+  
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Release Notes</h3>
+    </div>
+    <div class="panel-body">
+      <div class="conteiner">
+        
+        <div class="form-group">
+          <%= f.label :sistema_id %><br>
+          <%= f.collection_select :sistema_id, @sistemas, :id, :nome , {}, class:"form-control" %>
+        </div>
+        
+        <ul class="nav nav-tabs">
+          <li class="<%= if params[:tab] == 'descricao' then 'nav active' else 'nav' end %>">
+            <a href="#descricao" data-toggle="tab">Dados Gerais</a>
+          </li>
+          <li class="<%= if params[:tab] == 'caracteristicas' then 'nav active' else 'nav' end %>" >
+            <a href="#caracteristicas" data-toggle="tab">Características</a>
+          </li>
+          <li class="<%= if params[:tab] == 'integracoes' then 'nav active' else 'nav' end %>" >
+            <a href="#integracoes" data-toggle="tab">Integrações</a>
+          </li>
+          <li class="<%= if params[:tab] == 'defeitos' then 'nav active' else 'nav' end %>" >
+            <a href="#defeitos" data-toggle="tab">Defeitos</a>
+          </li>
+          <li class="<%= if params[:tab] == 'observacoes' then 'nav active' else 'nav' end %>" >
+            <a href="#observacoes" data-toggle="tab">Observações</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="<%= if (params[:tab] == 'descricao' || !params[:tab])then 'tab-pane fade in active'  else 'tab-pane fade' end%>" id="descricao">
+            
+            <div class="form-group">
+              <%= f.label :path_deploy %><br>
+              <%= f.text_field :path_deploy, class:"form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.label :contexto %><br>
+              <%= f.text_field :contexto, class:"form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.label :motivacao %><br>
+              <%= f.text_area :motivacao, class:"form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.label :instrucao_uso %><br>
+              <%= f.text_area :instrucao_uso, class:"form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.label :monitoramento %><br>
+              <%= f.text_field :monitoramento, class:"form-control" %>
+            </div>
+          </div>
+          <div class="<%= if (params[:tab] == 'caracteristicas' || !params[:tab])then 'tab-pane fade in active'  else 'tab-pane fade' end%>" id="caracteristicas">
+          
+          </div>
+          <div class="<%= if (params[:tab] == 'integracoes' || !params[:tab])then 'tab-pane fade in active'  else 'tab-pane fade' end%>" id="integracoes">
+          
+          </div>
+          <div class="<%= if (params[:tab] == 'defeitos' || !params[:tab])then 'tab-pane fade in active'  else 'tab-pane fade' end%>" id="defeitos">
+            <div class="button-add-tab">
+               <%= link_to 'Adicionar', new_defeito_path(:release_id => @release_note.id), class:"btn btn-primary active" %>
+             </div>
+             <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Lista de Defeitos</h3>
+              </div>
+              <div class="panel-body">
+                <table class="table table-responsive table-hover">
+                  <thead>
+                    <tr>
+                      <th>Descrição</th>
+                      <th>Ações</th>
+                    </tr>
+                  </thead>
+                
+                  <tbody>
+                    <% @defeitos.each do |defeito| %>
+                      <tr>
+                        <td><%= defeito.descricao %></td>
+                        <td>
+                          <td><%= link_to 'Remover', defeito, method: :delete, data: { confirm: 'Tem Certeza?' }, class:"btn btn-danger active" %></td>
+                        </td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+             
+          </div>
+          <div class="<%= if (params[:tab] == 'observacoes' || !params[:tab])then 'tab-pane fade in active'  else 'tab-pane fade' end%>" id="observacoes">
+          
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+   <div class="actions">
+    <%= f.submit "Salvar", class:"btn btn-primary" %>
+    <%= link_to 'Voltar', release_notes_path, class:"btn btn-info active" %>
+    <%= link_to 'Visualizar', @release_note, class:"btn btn-success active" %>
+    <%= link_to 'Deletar', @release_note, method: :delete, data: { confirm: 'Tem Certeza?' }, class:"btn btn-danger active" %>
+  </div>
+<% end %>

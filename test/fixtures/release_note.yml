@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pessoa_id: 
+  path_deploy: MyString
+  contexto: MyString
+  moticacao: MyString
+  instrucao_uso: MyString
+  monitoramento: MyString
+
+two:
+  pessoa_id: 
+  path_deploy: MyString
+  contexto: MyString
+  moticacao: MyString
+  instrucao_uso: MyString
+  monitoramento: MyString

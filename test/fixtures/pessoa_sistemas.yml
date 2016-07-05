@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sistema_id: 
+  pessoa_id: 
+  status: false
+
+two:
+  sistema_id: 
+  pessoa_id: 
+  status: false

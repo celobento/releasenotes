@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Release Notes</h3>
+    </div>
+    <div class="panel-body">
+    <div class="conteiner">
+      <p>
+        <strong>Sistema:</strong>
+        <output type="text" class="form-control" id="nome" ><%= @release_note.sistema.nome %></output>
+      </p>
+      
+      <p>
+        <strong>Path deploy:</strong>
+        <output type="text" class="form-control" id="nome" ><%= @release_note.path_deploy %></output>
+      </p>
+      
+      <p>
+        <strong>Contexto:</strong>
+        <output type="text" class="form-control" id="nome" ><%= @release_note.contexto %></output>
+      </p>
+      
+      <p>
+        <strong>Motivacao:</strong>
+        <output type="text" class="form-control" id="nome" ><%= @release_note.motivacao %></output>
+      </p>
+      
+      <p>
+        <strong>Instrucao uso:</strong>
+        <output type="text-area" class="form-control" id="nome" ><%= @release_note.instrucao_uso %></output>
+      </p>
+      
+      <p>
+        <strong>Monitoramento:</strong>
+        <output type="text" class="form-control" id="nome" ><%= @release_note.monitoramento %></output>
+      </p>
+    </div>
+  </div>
+</div>
+<%= link_to 'Editar', edit_release_note_path(@release_note, tab:"descricao"), class:"btn btn-warning active" %>
+<%= link_to 'Voltar', release_notes_path, class:"btn btn-info active" %>

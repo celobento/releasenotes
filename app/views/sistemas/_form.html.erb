@@ -1,0 +1,99 @@
+<% provide(:title, "#{texto_da_acao} Sistema" ) %>
+
+<%= form_for(@sistema) do |f| %>
+  
+  <style>
+    .button-modal{
+      padding: 10px 0px;
+    }
+  </style>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Sistema</h3>
+    </div>
+    <div class="panel-body">
+    <div class="conteiner">
+      <ul class="nav nav-tabs">
+        <li class="nav active">
+          <a href="#descricao" data-toggle="tab">Dados Gerais</a>
+        </li>
+        <li class="nav" >
+          <a href="#informacoes" data-toggle="tab">Responsáveis</a>
+        </li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane fade in active" id="descricao">
+          <div class="form-group">
+            <%= f.label :nome %>
+            <%= f.text_field :nome, class:"form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :sigla %>
+            <%= f.text_field :sigla, class:"form-control" %>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="informacoes">
+          <div class="button-modal">
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalAddResp">
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+              Responsável
+            </button>
+          </div>
+          <p>
+            <table class="table table-responsive">
+              <tbody>
+                <tr>
+                  <td>Nome</td>
+                  <td>Status</td>
+                </tr>
+                <tr>
+                  <td>Marcelo</td>
+                  <td>Ativo</td>
+                </tr>
+                <tr>
+                  <td>Felipe</td>
+                  <td>Inativo</td>
+                </tr>
+              </tbody>
+            </table>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="actions">
+    <%= f.submit texto_da_acao, class:"btn btn-primary" %>
+    <%= link_to 'Voltar', sistemas_path, class:"btn btn-info active" %>
+    <%= link_to 'Visualizar', @sistema, class:"btn btn-success active" %>
+    <%= link_to 'Deletar', @sistema, method: :delete, data: { confirm: 'Tem Certeza?' }, class:"btn btn-danger active" %>
+    <!--%= button_tag(type: 'submit', class: "btn btn-primary") do %>
+     <i class="glyphicon glyphicon-ok"></i> Criar
+    < end %-->
+  </div>
+<% end %>
+
+<!-- Modal Adiciona Responsavel-->
+<div class="modal fade" id="modalAddResp" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <%= form_for(@pessoaSistema, :remote => true) do |f| %>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Adicionar Resposável</h4>
+        </div>
+        <div class="modal-body">
+          <%= f.hidden_field :sistema_id, :value => @sistema.id %>
+          <div class="form-group">
+            <%= f.label :pessoa %>
+            <%= f.collection_select :pessoa_id, @pessoas, :id, :nome , {}, class:"form-control" %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <%= f.submit "Adicionar", method: :addpessoa, class:"btn btn-primary" %>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

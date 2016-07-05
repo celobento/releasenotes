@@ -1,0 +1,35 @@
+<% provide(:title, "#{texto_da_acao} Pessoa" ) %>
+
+<%= form_for(@pessoa) do |f| %>
+  <% if @pessoa.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@pessoa.errors.count, "error") %> prohibited this pessoa from being saved:</h2>
+
+      <ul>
+      <% @pessoa.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :nome %><br>
+    <%= f.text_field :nome, class:"form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :email %><br>
+    <%= f.text_field :email, class:"form-control" %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :matricula %><br>
+    <%= f.text_field :matricula, class:"form-control" %>
+  </div>
+  <div class="actions">
+    <%= f.submit texto_da_acao, class:"btn btn-primary" %>
+    <%= link_to 'Voltar', pessoas_path, class:"btn btn-info active" %>
+    <%= link_to 'Visualizar', @pessoa, class:"btn btn-success active" %>
+    <%= link_to 'Deletar', @pessoa, method: :delete, data: { confirm: 'Tem Certeza?' }, class:"btn btn-danger active" %>
+  </div>
+<% end %>

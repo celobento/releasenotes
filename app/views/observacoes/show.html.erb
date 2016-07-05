@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Release note:</strong>
+  <%= @observacao.release_note %>
+</p>
+
+<p>
+  <strong>Descricao:</strong>
+  <%= @observacao.descricao %>
+</p>
+
+<%= link_to 'Edit', edit_observacao_path(@observacao) %> |
+<%= link_to 'Back', observacoes_path %>

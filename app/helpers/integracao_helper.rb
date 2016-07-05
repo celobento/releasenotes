@@ -1,0 +1,2 @@
+module IntegracaoHelper
+end

@@ -23,7 +23,7 @@ inflect.irregular 'pessoa', 'pessoas'
 inflect.irregular 'caracteristica', 'caracteristicas'
 inflect.irregular 'observacao', 'observacoes'
 inflect.irregular 'defeito', 'defeitos'
-inflect.irregular 'tipo_integracao', 'tipos_integracao'
+inflect.irregular 'tipo_integracao', 'tipo_integracoes'
 inflect.irregular 'integracao', 'integracoes'
 inflect.irregular 'release_note', 'release_notes'
 end

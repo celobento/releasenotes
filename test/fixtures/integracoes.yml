@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tipo_integracao_id: 
+  release_note_id: 
+  descricao: MyString
+
+two:
+  tipo_integracao_id: 
+  release_note_id: 
+  descricao: MyString

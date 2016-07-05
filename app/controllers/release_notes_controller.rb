@@ -22,6 +22,8 @@ class ReleaseNotesController < ApplicationController
   def edit
     @sistemas = Sistema.all
     @defeitos = Defeito.where(release_note_id: @release_note.id)
+    @observacoes = Observacao.where(release_note_id: @release_note.id)
+    @integracoes = Integracao.where(release_note_id: @release_note.id)
   end
 
   # POST /release_notes

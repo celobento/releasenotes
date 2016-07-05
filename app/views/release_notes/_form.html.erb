@@ -66,7 +66,37 @@
           
           </div>
           <div class="<%= if (params[:tab] == 'integracoes' || !params[:tab])then 'tab-pane fade in active'  else 'tab-pane fade' end%>" id="integracoes">
-          
+            <div class="button-add-tab">
+               <%= link_to 'Adicionar', new_integracao_path(:release_id => @release_note.id), class:"btn btn-primary active" %>
+             </div>
+             <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Lista de Integrações</h3>
+              </div>
+              <div class="panel-body">
+                <table class="table table-responsive table-hover">
+                  <thead>
+                    <tr>
+                      <th>Tipo</th>
+                      <th>Descrição</th>
+                      <th>Ações</th>
+                    </tr>
+                  </thead>
+                
+                  <tbody>
+                    <% @integracoes.each do |integracao| %>
+                      <tr>
+                        <td><%= integracao.tipo_integracao.nome %></td>
+                        <td><%= integracao.descricao %></td>
+                        <td>
+                          <td><%= link_to 'Remover', integracao, method: :delete, data: { confirm: 'Tem Certeza?' }, class:"btn btn-danger active" %></td>
+                        </td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
           <div class="<%= if (params[:tab] == 'defeitos' || !params[:tab])then 'tab-pane fade in active'  else 'tab-pane fade' end%>" id="defeitos">
             <div class="button-add-tab">
@@ -98,10 +128,37 @@
                 </table>
               </div>
             </div>
-             
           </div>
           <div class="<%= if (params[:tab] == 'observacoes' || !params[:tab])then 'tab-pane fade in active'  else 'tab-pane fade' end%>" id="observacoes">
-          
+            <div class="button-add-tab">
+               <%= link_to 'Adicionar', new_observacao_path(:release_id => @release_note.id), class:"btn btn-primary active" %>
+             </div>
+             <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Lista de Observações</h3>
+              </div>
+              <div class="panel-body">
+                <table class="table table-responsive table-hover">
+                  <thead>
+                    <tr>
+                      <th>Descrição</th>
+                      <th>Ações</th>
+                    </tr>
+                  </thead>
+                
+                  <tbody>
+                    <% @observacoes.each do |observacao| %>
+                      <tr>
+                        <td><%= observacao.descricao %></td>
+                        <td>
+                          <td><%= link_to 'Remover', observacao, method: :delete, data: { confirm: 'Tem Certeza?' }, class:"btn btn-danger active" %></td>
+                        </td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
       </div>
     </div>

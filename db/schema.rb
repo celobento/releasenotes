@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160705010328) do
+ActiveRecord::Schema.define(version: 20160705171835) do
 
   create_table "caracteristicas", force: :cascade do |t|
     t.string   "nome"
@@ -27,6 +27,26 @@ ActiveRecord::Schema.define(version: 20160705010328) do
   end
 
   add_index "defeitos", ["release_note_id"], name: "index_defeitos_on_release_note_id"
+
+  create_table "integracoes", force: :cascade do |t|
+    t.integer  "tipo_integracao_id"
+    t.integer  "release_note_id"
+    t.string   "descricao"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "integracoes", ["release_note_id"], name: "index_integracoes_on_release_note_id"
+  add_index "integracoes", ["tipo_integracao_id"], name: "index_integracoes_on_tipo_integracao_id"
+
+  create_table "observacoes", force: :cascade do |t|
+    t.integer  "release_note_id"
+    t.string   "descricao"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "observacoes", ["release_note_id"], name: "index_observacoes_on_release_note_id"
 
   create_table "pessoa_sistemas", force: :cascade do |t|
     t.integer  "sistema_id"
@@ -63,6 +83,12 @@ ActiveRecord::Schema.define(version: 20160705010328) do
   create_table "sistemas", force: :cascade do |t|
     t.string   "nome"
     t.string   "sigla"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tipo_integracoes", force: :cascade do |t|
+    t.string   "nome"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

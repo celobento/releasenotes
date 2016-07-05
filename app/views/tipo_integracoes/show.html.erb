@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @tipo_integracao.nome %>
+</p>
+
+<%= link_to 'Editar', edit_tipo_integracao_path(@tipo_integracao), class:"btn btn-warning active" %>
+<%= link_to 'Voltar', tipo_integracoes_path, class:"btn btn-info active" %>

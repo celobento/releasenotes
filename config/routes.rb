@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
+  
+  root 'pages#index'
+  
+  resources :integracoes, :only => [:new, :create, :destroy]
+  resources :observacoes
+  resources :tipo_integracoes
   resources :defeitos
   resources :release_notes
-  root 'pages#index'
   
   resources :pessoas
   resources :sistemas

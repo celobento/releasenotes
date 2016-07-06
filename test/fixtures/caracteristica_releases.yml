@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  caracteristica_id: 
+  release_note_id: 
+  status: false
+  descricao: MyString
+
+two:
+  caracteristica_id: 
+  release_note_id: 
+  status: false
+  descricao: MyString

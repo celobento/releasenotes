@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @caracteristica.nome %>
+</p>
+
+<%= link_to 'Editar', edit_caracteristica_path(@caracteristica), class:"btn btn-warning active" %>
+<%= link_to 'Voltar', caracteristicas_path, class:"btn btn-info active" %>

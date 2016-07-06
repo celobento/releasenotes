@@ -63,7 +63,37 @@
             </div>
           </div>
           <div class="<%= if (params[:tab] == 'caracteristicas' || !params[:tab])then 'tab-pane fade in active'  else 'tab-pane fade' end%>" id="caracteristicas">
-          
+            <div class="button-add-tab">
+               <%= link_to 'Adicionar', new_caracteristica_release_path(:release_id => @release_note.id), class:"btn btn-primary active" %>
+             </div>
+             <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Lista de Caracteristicas</h3>
+              </div>
+              <div class="panel-body">
+                <table class="table table-responsive table-hover">
+                  <thead>
+                    <tr>
+                      <th>Caracteristica</th>
+                      <th>Descrição</th>
+                      <th>Ações</th>
+                    </tr>
+                  </thead>
+                
+                  <tbody>
+                    <% @caracteristica_releases.each do |cr| %>
+                      <tr>
+                        <td><%= cr.caracteristica.nome %></td>
+                        <td><%= cr.descricao %></td>
+                        <td>
+                          <td><%= link_to 'Remover', cr, method: :delete, data: { confirm: 'Tem Certeza?' }, class:"btn btn-danger active" %></td>
+                        </td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
           <div class="<%= if (params[:tab] == 'integracoes' || !params[:tab])then 'tab-pane fade in active'  else 'tab-pane fade' end%>" id="integracoes">
             <div class="button-add-tab">

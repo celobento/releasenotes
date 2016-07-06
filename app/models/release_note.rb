@@ -3,4 +3,5 @@ class ReleaseNote < ActiveRecord::Base
   has_many :defeitos
   has_many :observacoes
   has_many :integracoes
+  has_many :caracteristica_releases
 end

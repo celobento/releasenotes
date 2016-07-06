@@ -24,6 +24,7 @@ class ReleaseNotesController < ApplicationController
     @defeitos = Defeito.where(release_note_id: @release_note.id)
     @observacoes = Observacao.where(release_note_id: @release_note.id)
     @integracoes = Integracao.where(release_note_id: @release_note.id)
+    @caracteristica_releases = CaracteristicaRelease.where(release_note_id: @release_note.id)
   end
 
   # POST /release_notes

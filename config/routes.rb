@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  
+
   root 'pages#index'
   
+  resources :caracteristica_releases, :only => [:new, :create, :destroy]
   resources :integracoes, :only => [:new, :create, :destroy]
   resources :observacoes
   resources :tipo_integracoes

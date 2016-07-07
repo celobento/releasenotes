@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160706005013) do
+ActiveRecord::Schema.define(version: 20160706160554) do
 
   create_table "caracteristica_releases", force: :cascade do |t|
     t.integer  "caracteristica_id"
@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(version: 20160706005013) do
     t.string   "monitoramento"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.string   "path_svn"
   end
 
   add_index "release_notes", ["sistema_id"], name: "index_release_notes_on_sistema_id"

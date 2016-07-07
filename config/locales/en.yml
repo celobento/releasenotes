@@ -21,3 +21,22 @@
 
 en:
   hello: "Hello world"
+  will_paginate:
+    models:
+        parceiro:
+            zero:  matricula
+            one:   matricula
+            few:   matriculas
+            other: matriculas
+    page_entries_info:
+        single_page:
+            zero:  "Nenhum(a) Registro encontrado(a)."
+            one:   "1 Registro."
+            other: "%{count} Registros."
+        single_page_html:
+            zero:  "Nenhum(a) Registro encontrado(a)."
+            one:   "<b>1</b> Registro."
+            other: "<b>%{count}</b> Registros."
+        multi_page: "%{from} a %{to} do total de %{count} Registros."
+        #multi_page_html: "Mostrando %{model} <b>%{from}&nbsp;a&nbsp;%{to}</b> do total de <b>%{count}</b>."
+        multi_page_html: "<b>%{from}&nbsp;a&nbsp;%{to}</b> do total de <b>%{count}</b> Registros."

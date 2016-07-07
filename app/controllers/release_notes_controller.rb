@@ -4,18 +4,28 @@ class ReleaseNotesController < ApplicationController
   # GET /release_notes
   # GET /release_notes.json
   def index
-    @release_notes = ReleaseNote.all
+    @release_notes = ReleaseNote.paginate(page: params[:page], :per_page => 10)
+    @release_notes_all = ReleaseNote.all
   end
 
   # GET /release_notes/1
   # GET /release_notes/1.json
   def show
+    @sistemas = Sistema.all
+    @defeitos = Defeito.where(release_note_id: @release_note.id)
+    @observacoes = Observacao.where(release_note_id: @release_note.id)
+    @integracoes = Integracao.where(release_note_id: @release_note.id)
+    @caracteristica_releases = CaracteristicaRelease.where(release_note_id: @release_note.id)
   end
 
   # GET /release_notes/new
   def new
     @release_note = ReleaseNote.new
     @sistemas = Sistema.all
+    @defeitos = Defeito.where(release_note_id: @release_note.id)
+    @observacoes = Observacao.where(release_note_id: @release_note.id)
+    @integracoes = Integracao.where(release_note_id: @release_note.id)
+    @caracteristica_releases = CaracteristicaRelease.where(release_note_id: @release_note.id)
   end
 
   # GET /release_notes/1/edit
@@ -30,41 +40,36 @@ class ReleaseNotesController < ApplicationController
   # POST /release_notes
   # POST /release_notes.json
   def create
-    @release_note = ReleaseNote.new(release_note_params)
 
-    respond_to do |format|
-      if @release_note.save
-        format.html { redirect_to @release_note, notice: 'Release note was successfully created.' }
-        format.json { render :show, status: :created, location: @release_note }
-      else
-        format.html { render :new }
-        format.json { render json: @release_note.errors, status: :unprocessable_entity }
-      end
+    @release_note = ReleaseNote.new(release_note_params)
+    if @release_note.save
+      flash[:success] = "Release criada com sucesso !"
+      redirect_to edit_release_note_path @release_note, tab:"descricao"
+    else
+      flash[:danger] = "Falha ao criar Release !"
+      render :new
     end
   end
 
   # PATCH/PUT /release_notes/1
   # PATCH/PUT /release_notes/1.json
   def update
-    respond_to do |format|
+   
       if @release_note.update(release_note_params)
-        format.html { redirect_to @release_note, notice: 'Release note was successfully updated.' }
-        format.json { render :show, status: :ok, location: @release_note }
+        flash[:success] = "Release atualizado com sucesso !"
+        redirect_to release_note_path @release_note, tab:"descricao"
       else
-        format.html { render :edit }
-        format.json { render json: @release_note.errors, status: :unprocessable_entity }
+        flash[:success] = "Falha ao atualizar release !"
+        render :edit
       end
-    end
   end
 
   # DELETE /release_notes/1
   # DELETE /release_notes/1.json
   def destroy
     @release_note.destroy
-    respond_to do |format|
-      format.html { redirect_to release_notes_url, notice: 'Release note was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    flash[:success] = "Release removido com sucesso !"
+    redirect_to release_notes_path
   end
 
   private

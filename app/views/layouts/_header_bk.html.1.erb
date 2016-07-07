@@ -10,7 +10,7 @@
           </button>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
-          <ul class="nav navbar-nav navbar-right">
+          <ul class="nav navbar-nav">
             <li class="active"><a href="#home">Home</a></li>
             <li><%= link_to "Releases", release_notes_path %></li>
             <li class="dropdown">
@@ -30,10 +30,13 @@
                 <li><a href="#">Loggout</a></li>
               </ul>
             </li>
-            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
           </ul>
-          
+          <form class="navbar-form navbar-right">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="O que procura?"/>
+            </div>
+            <input type="submit" value="Buscar" class="btn btn-default" />
+          </form>
         </div>
       </div>
     </nav>

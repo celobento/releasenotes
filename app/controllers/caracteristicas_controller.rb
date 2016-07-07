@@ -17,7 +17,7 @@ class CaracteristicasController < ApplicationController
       redirect_to caracteristicas_path
     else
       flash[:danger] = "Falha ao adicionar Caracteristica !"
-      redirect_to :new
+      render :new
     end
   end
 

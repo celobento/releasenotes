@@ -33,7 +33,7 @@ class CaracteristicaReleasesController < ApplicationController
   end
   
   def caracteristica_release_params
-    params.require(:caracteristica_release).permit(:release_note_id, :caracteristica_id, :descricao)
+    params.require(:caracteristica_release).permit(:release_note_id, :caracteristica_id, :descricao, :status)
   end
   
   def release_note_params

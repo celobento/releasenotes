@@ -7,14 +7,13 @@
       padding: 10px 0px;
     }
   </style>
- 
-  
+
   <div class="panel panel-default">
-    <div class="panel-heading">
+        <div class="panel-heading">
       <h3 class="panel-title">Release Notes</h3>
     </div>
     <div class="panel-body">
-      <div class="conteiner">
+      <div >
         
         <div class="form-group">
           <%= f.label :sistema_id %><br>
@@ -25,18 +24,20 @@
           <li class="<%= if params[:tab] == 'descricao' then 'nav active' else 'nav' end %>">
             <a href="#descricao" data-toggle="tab">Dados Gerais</a>
           </li>
-          <li class="<%= if params[:tab] == 'caracteristicas' then 'nav active' else 'nav' end %>" >
-            <a href="#caracteristicas" data-toggle="tab">Características</a>
-          </li>
-          <li class="<%= if params[:tab] == 'integracoes' then 'nav active' else 'nav' end %>" >
-            <a href="#integracoes" data-toggle="tab">Integrações</a>
-          </li>
-          <li class="<%= if params[:tab] == 'defeitos' then 'nav active' else 'nav' end %>" >
-            <a href="#defeitos" data-toggle="tab">Defeitos</a>
-          </li>
-          <li class="<%= if params[:tab] == 'observacoes' then 'nav active' else 'nav' end %>" >
-            <a href="#observacoes" data-toggle="tab">Observações</a>
-          </li>
+          <% if @release_note.new_record? == false %>
+            <li class="<%= if params[:tab] == 'caracteristicas' then 'nav active' else 'nav' end %>" >
+              <a href="#caracteristicas" data-toggle="tab">Características</a>
+            </li>
+            <li class="<%= if params[:tab] == 'integracoes' then 'nav active' else 'nav' end %>" >
+              <a href="#integracoes" data-toggle="tab">Integrações</a>
+            </li>
+            <li class="<%= if params[:tab] == 'defeitos' then 'nav active' else 'nav' end %>" >
+              <a href="#defeitos" data-toggle="tab">Defeitos</a>
+            </li>
+            <li class="<%= if params[:tab] == 'observacoes' then 'nav active' else 'nav' end %>" >
+              <a href="#observacoes" data-toggle="tab">Observações</a>
+            </li>
+          <% end %>
         </ul>
         <div class="tab-content">
           <div class="<%= if (params[:tab] == 'descricao' || !params[:tab])then 'tab-pane fade in active'  else 'tab-pane fade' end%>" id="descricao">
@@ -44,6 +45,10 @@
             <div class="form-group">
               <%= f.label :path_deploy %><br>
               <%= f.text_field :path_deploy, class:"form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.label :path_svn %><br>
+              <%= f.text_field :path_svn, class:"form-control" %>
             </div>
             <div class="form-group">
               <%= f.label :contexto %><br>
@@ -62,6 +67,7 @@
               <%= f.text_field :monitoramento, class:"form-control" %>
             </div>
           </div>
+          <% if @release_note.new_record? == false %>
           <div class="<%= if (params[:tab] == 'caracteristicas' || !params[:tab])then 'tab-pane fade in active'  else 'tab-pane fade' end%>" id="caracteristicas">
             <div class="button-add-tab">
                <%= link_to 'Adicionar', new_caracteristica_release_path(:release_id => @release_note.id), class:"btn btn-primary active" %>
@@ -69,13 +75,14 @@
              <div class="panel panel-default">
               <div class="panel-heading">
                 <h3 class="panel-title">Lista de Caracteristicas</h3>
-              </div>
-              <div class="panel-body">
-                <table class="table table-responsive table-hover">
+              </div> 
+              <div class="panel-body table-responsive">
+                <table class="table table-hover">
                   <thead>
                     <tr>
                       <th>Caracteristica</th>
                       <th>Descrição</th>
+                      <th>Status</th>
                       <th>Ações</th>
                     </tr>
                   </thead>
@@ -85,6 +92,10 @@
                       <tr>
                         <td><%= cr.caracteristica.nome %></td>
                         <td><%= cr.descricao %></td>
+                        <td>
+                          
+                          <%= if cr.status == true then image_tag("circle_green.png", alt:"Sim") else  image_tag("circle_red.png", alt:"Não") end %>
+                        </td>
                         <td>
                           <td><%= link_to 'Remover', cr, method: :delete, data: { confirm: 'Tem Certeza?' }, class:"btn btn-danger active" %></td>
                         </td>
@@ -103,8 +114,8 @@
               <div class="panel-heading">
                 <h3 class="panel-title">Lista de Integrações</h3>
               </div>
-              <div class="panel-body">
-                <table class="table table-responsive table-hover">
+              <div class="panel-body table-responsive">
+                <table class="table table-hover">
                   <thead>
                     <tr>
                       <th>Tipo</th>
@@ -136,8 +147,8 @@
               <div class="panel-heading">
                 <h3 class="panel-title">Lista de Defeitos</h3>
               </div>
-              <div class="panel-body">
-                <table class="table table-responsive table-hover">
+              <div class="panel-body table-responsive">
+                <table class="table table-hover">
                   <thead>
                     <tr>
                       <th>Descrição</th>
@@ -167,8 +178,8 @@
               <div class="panel-heading">
                 <h3 class="panel-title">Lista de Observações</h3>
               </div>
-              <div class="panel-body">
-                <table class="table table-responsive table-hover">
+              <div class="panel-body table-responsive">
+                <table class="table table-hover">
                   <thead>
                     <tr>
                       <th>Descrição</th>
@@ -190,6 +201,7 @@
               </div>
             </div>
           </div>
+          <% end %>
       </div>
     </div>
   </div>
@@ -197,7 +209,9 @@
    <div class="actions">
     <%= f.submit "Salvar", class:"btn btn-primary" %>
     <%= link_to 'Voltar', release_notes_path, class:"btn btn-info active" %>
-    <%= link_to 'Visualizar', @release_note, class:"btn btn-success active" %>
-    <%= link_to 'Deletar', @release_note, method: :delete, data: { confirm: 'Tem Certeza?' }, class:"btn btn-danger active" %>
+    <% if @release_note.new_record? == false %>
+      <%= link_to 'Visualizar', release_note_path(@release_note, tab:"descricao"), class:"btn btn-success active" %>
+      <%= link_to 'Deletar', @release_note, method: :delete, data: { confirm: 'Tem Certeza?' }, class:"btn btn-danger active" %>
+    <% end %>
   </div>
 <% end %>

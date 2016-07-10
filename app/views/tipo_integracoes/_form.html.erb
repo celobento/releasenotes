@@ -12,14 +12,21 @@
       </div>
     </div>
   </div>
-</div>
-  <div class="actions">
-    <%= f.submit texto_da_acao, class:"btn btn-primary" %>
-    <%= link_to 'Voltar', tipo_integracoes_path, class:"btn btn-info active" %>
-    <%= link_to 'Visualizar', @tipo_integracao, class:"btn btn-success active" %>
-    <%= link_to 'Deletar', @tipo_integracao, method: :delete, data: { confirm: 'Tem Certeza?' }, class:"btn btn-danger active" %>
-    <!--%= button_tag(type: 'submit', class: "btn btn-primary") do %>
-     <i class="glyphicon glyphicon-ok"></i> Criar
-    < end %-->
+  <div class="panel-footer">
+    <div class="row">
+      <div class="col col-xs-12">
+        <%= f.submit texto_da_acao, class:"btn btn-primary" %>
+        <%= link_to 'Voltar', tipo_integracoes_path, class:"btn btn-info active" %>
+        <% if @tipo_integracao.new_record? == false %>
+          <%= link_to 'Deletar', @tipo_integracao, method: :delete, data: { confirm: 'Tem Certeza?' }, class:"btn btn-danger active" %>
+        <% end %>
+        <!--%= button_tag(type: 'submit', class: "btn btn-primary") do %>
+         <i class="glyphicon glyphicon-ok"></i> Criar
+        < end %-->
+      </div>
+
+    </div>
   </div>
+</div>
+
 <% end %>

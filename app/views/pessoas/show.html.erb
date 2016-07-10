@@ -1,21 +1,41 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Pessoa</h1>
+<div class="panel panel-default panel-table">
+              <div class="panel-heading">
+                <div class="row">
+                  <div class="col col-xs-12">
+                    <h3 class="panel-title">Pessoa</h3>
+                  </div>
 
-<div class="form-group">
-  <label for="nome">Nome</label>
-  <output type="text" class="form-control" id="nome" ><%= @pessoa.nome %></output>
+                </div>
+              </div>
+              <div class="panel-body table-responsive">
+                <div class="panel-show">
+
+                  <div class="form-group">
+                    <label for="nome">Nome</label>
+                    <output type="text" class="form-control" id="nome" ><%= @pessoa.nome %></output>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <output type="email" class="form-control" id="email" ><%= @pessoa.email %></output>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="matricula">Matricula</label>
+                    <output type="text" class="form-control" id="matricula" ><%= @pessoa.matricula %></output>
+                  </div>
+                </div>
+
+              </div>
+              <div class="panel-footer">
+                <div class="row">
+                  <div class="col col-xs-12">
+                    <%= link_to 'Editar', edit_pessoa_path(@pessoa), class:"btn btn-warning active" %>
+                    <%= link_to 'Voltar', pessoas_path, class:"btn btn-info active" %>
+                  </div>
+
+                </div>
+              </div>
 </div>
-
-<div class="form-group">
-  <label for="email">E-mail</label>
-  <output type="email" class="form-control" id="email" ><%= @pessoa.email %></output>
-</div>
-
-<div class="form-group">
-  <label for="matricula">Matricula</label>
-  <output type="text" class="form-control" id="matricula" ><%= @pessoa.matricula %></output>
-</div>
-
-<%= link_to 'Editar', edit_pessoa_path(@pessoa), class:"btn btn-warning active" %>
-<%= link_to 'Voltar', pessoas_path, class:"btn btn-info active" %>

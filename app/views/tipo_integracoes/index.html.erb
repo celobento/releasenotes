@@ -4,10 +4,10 @@
               <div class="panel-heading">
                 <div class="row">
                   <div class="col col-xs-6">
-                    <h3 class="panel-title">Lista de Tipos de Integração</h3>
+                    <h3 class="panel-title">Tipos de Integração</h3>
                   </div>
                   <div class="col col-xs-6 text-right">
-                    
+
                     <%= link_to new_tipo_integracao_path, class:"btn btn-primary btn-sm active" do %>
                       <span class="glyphicon glyphicon-plus"></span> Novo
                     <% end %>
@@ -34,19 +34,19 @@
                           </div>
                         </td>
         <td><%= tipo_integracao.nome %></td>
-        
+
       </tr>
         <% end %>
       </tbody>
     </table>
-            
+
               </div>
               <div class="panel-footer">
                 <div class="row">
-                  <div class="col col-xs-4">
+                  <div class="col col-xs-6">
                     <%= page_entries_info @tipo_integracoes %>
                   </div>
-                  <div class="col col-xs-8">
+                  <div class="col col-xs-6">
                     <ul class="pagination hidden-xs pull-right">
                       <li><%= will_paginate @tipo_integracoes, :previous_label => image_tag('previous.png', :alt => 'Anterior', :class => 'glyphicon glyphicon-chevron-left') ,:next_label => image_tag('next.png', :alt => 'Próximo', :class => 'btn_img') , :separator => ' | ', :params => params %> </li>
                     </ul>
@@ -54,4 +54,3 @@
                 </div>
               </div>
             </div>
-

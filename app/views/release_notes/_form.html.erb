@@ -1,7 +1,7 @@
 <% provide(:title, "#{texto_da_acao} Release Notes" ) %>
 
 <%= form_for(@release_note) do |f| %>
-  
+
   <style>
     .button-add-tab{
       padding: 10px 0px;
@@ -14,12 +14,12 @@
     </div>
     <div class="panel-body">
       <div >
-        
+
         <div class="form-group">
           <%= f.label :sistema_id %><br>
           <%= f.collection_select :sistema_id, @sistemas, :id, :nome , {}, class:"form-control" %>
         </div>
-        
+
         <ul class="nav nav-tabs">
           <li class="<%= if params[:tab] == 'descricao' then 'nav active' else 'nav' end %>">
             <a href="#descricao" data-toggle="tab">Dados Gerais</a>
@@ -41,7 +41,7 @@
         </ul>
         <div class="tab-content">
           <div class="<%= if (params[:tab] == 'descricao' || !params[:tab])then 'tab-pane fade in active'  else 'tab-pane fade' end%>" id="descricao">
-            
+
             <div class="form-group">
               <%= f.label :path_deploy %><br>
               <%= f.text_field :path_deploy, class:"form-control" %>
@@ -75,7 +75,7 @@
              <div class="panel panel-default">
               <div class="panel-heading">
                 <h3 class="panel-title">Lista de Caracteristicas</h3>
-              </div> 
+              </div>
               <div class="panel-body table-responsive">
                 <table class="table table-hover">
                   <thead>
@@ -86,14 +86,14 @@
                       <th>Ações</th>
                     </tr>
                   </thead>
-                
+
                   <tbody>
                     <% @caracteristica_releases.each do |cr| %>
                       <tr>
                         <td><%= cr.caracteristica.nome %></td>
                         <td><%= cr.descricao %></td>
                         <td>
-                          
+
                           <%= if cr.status == true then image_tag("circle_green.png", alt:"Sim") else  image_tag("circle_red.png", alt:"Não") end %>
                         </td>
                         <td>
@@ -123,7 +123,7 @@
                       <th>Ações</th>
                     </tr>
                   </thead>
-                
+
                   <tbody>
                     <% @integracoes.each do |integracao| %>
                       <tr>
@@ -155,7 +155,7 @@
                       <th>Ações</th>
                     </tr>
                   </thead>
-                
+
                   <tbody>
                     <% @defeitos.each do |defeito| %>
                       <tr>
@@ -186,7 +186,7 @@
                       <th>Ações</th>
                     </tr>
                   </thead>
-                
+
                   <tbody>
                     <% @observacoes.each do |observacao| %>
                       <tr>
@@ -210,7 +210,6 @@
     <%= f.submit "Salvar", class:"btn btn-primary" %>
     <%= link_to 'Voltar', release_notes_path, class:"btn btn-info active" %>
     <% if @release_note.new_record? == false %>
-      <%= link_to 'Visualizar', release_note_path(@release_note, tab:"descricao"), class:"btn btn-success active" %>
       <%= link_to 'Deletar', @release_note, method: :delete, data: { confirm: 'Tem Certeza?' }, class:"btn btn-danger active" %>
     <% end %>
   </div>

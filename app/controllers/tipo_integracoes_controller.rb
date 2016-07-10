@@ -25,16 +25,12 @@ class TipoIntegracoesController < ApplicationController
   # POST /tipo_integracoes.json
   def create
     @tipo_integracao = TipoIntegracao.new(tipo_integracao_params)
+    if @tipo_integracao.save
+      flash[:success] = "Tipo criado com sucesso !"
+       redirect_to tipo_integracoes_path
+     else
 
-    respond_to do |format|
-      if @tipo_integracao.save
-        format.html { redirect_to @tipo_integracao, notice: 'Tipo integracao was successfully created.' }
-        format.json { render :show, status: :created, location: @tipo_integracao }
-      else
-        format.html { render :new }
-        format.json { render json: @tipo_integracao.errors, status: :unprocessable_entity }
-      end
-    end
+     end
   end
 
   # PATCH/PUT /tipo_integracoes/1

@@ -1,7 +1,7 @@
 <% provide(:title, "#{texto_da_acao} Sistema" ) %>
 
 <%= form_for(@sistema) do |f| %>
-  
+
   <style>
     .button-modal{
       padding: 10px 0px;
@@ -12,17 +12,19 @@
       <h3 class="panel-title">Sistema</h3>
     </div>
     <div class="panel-body">
-    <div class="conteiner">
       <ul class="nav nav-tabs">
         <li class="nav active">
           <a href="#descricao" data-toggle="tab">Dados Gerais</a>
         </li>
-        <li class="nav" >
-          <a href="#informacoes" data-toggle="tab">Responsáveis</a>
-        </li>
+        <% if @sistema.new_record? == false %>
+          <li class="nav" >
+            <a href="#informacoes" data-toggle="tab">Responsáveis</a>
+          </li>
+        <% end %>
       </ul>
       <div class="tab-content">
         <div class="tab-pane fade in active" id="descricao">
+          <div class="panel-show">
           <div class="form-group">
             <%= f.label :nome %>
             <%= f.text_field :nome, class:"form-control" %>
@@ -32,45 +34,87 @@
             <%= f.text_field :sigla, class:"form-control" %>
           </div>
         </div>
-        <div class="tab-pane fade" id="informacoes">
-          <div class="button-modal">
-            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalAddResp">
-              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-              Responsável
-            </button>
-          </div>
-          <p>
-            <table class="table table-responsive">
-              <tbody>
-                <tr>
-                  <td>Nome</td>
-                  <td>Status</td>
-                </tr>
-                <tr>
-                  <td>Marcelo</td>
-                  <td>Ativo</td>
-                </tr>
-                <tr>
-                  <td>Felipe</td>
-                  <td>Inativo</td>
-                </tr>
-              </tbody>
-            </table>
-          </p>
         </div>
+        <% if @sistema.new_record? == false %>
+        <div class="tab-pane fade" id="informacoes">
+          <div class="panel-show">
+
+
+          <div class="panel panel-default panel-table">
+                        <div class="panel-heading">
+                          <div class="row">
+                            <div class="col col-xs-6">
+                              <h3 class="panel-title">Responsáveis</h3>
+                            </div>
+                            <div class="col col-xs-6 text-right">
+
+                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAddResp">
+                                <span class="glyphicon glyphicon-plus"></span> Novo
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="panel-body table-responsive">
+                          <table class="table table-striped table-bordered table-list">
+            <thead>
+              <tr>
+                <th><span class="glyphicon glyphicon-cog"></span></th>
+                <th>Nome</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @responsaveis_lista.each do |responsavel| %>
+                <tr>
+                  <td align="center">
+                    <div class="form-inline">
+                     <%= link_to caracteristica, class:"btn btn-default btn-sm" do %>
+                        <span class="glyphicon glyphicon-pencil"></span>
+                      <% end %>
+                    </div>
+                  </td>
+                  <td><%= responsavel.pessoa.nome %></td>
+
+                </tr>
+                  <% end %>
+                </tbody>
+              </table>
+
+                        </div>
+                        <div class="panel-footer">
+                          <div class="row">
+                            <div class="col col-xs-6">
+                              <%= page_entries_info @responsaveis_lista %>
+                            </div>
+                            <div class="col col-xs-6">
+                              <ul class="pagination hidden-xs pull-right">
+                                <li><%= will_paginate @responsaveis_lista, :previous_label => image_tag('previous.png', :alt => 'Anterior', :class => 'glyphicon glyphicon-chevron-left') ,:next_label => image_tag('next.png', :alt => 'Próximo', :class => 'btn_img') , :separator => ' | ', :params => params %> </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      </div>
       </div>
+      <% end %>
     </div>
   </div>
+  <div class="panel-footer">
+    <div class="row">
+      <div class="col col-xs-12">
+        <%= f.submit texto_da_acao, class:"btn btn-primary" %>
+        <%= link_to 'Voltar', sistemas_path, class:"btn btn-info active" %>
+        <% if @sistema.new_record? == false %>
+          <%= link_to 'Deletar', @sistema, method: :delete, data: { confirm: 'Tem Certeza?' }, class:"btn btn-danger active" %>
+        <% end %>
+        <!--%= button_tag(type: 'submit', class: "btn btn-primary") do %>
+         <i class="glyphicon glyphicon-ok"></i> Criar
+        < end %-->
+      </div>
+
+    </div>
+
 </div>
-  <div class="actions">
-    <%= f.submit texto_da_acao, class:"btn btn-primary" %>
-    <%= link_to 'Voltar', sistemas_path, class:"btn btn-info active" %>
-    <%= link_to 'Visualizar', @sistema, class:"btn btn-success active" %>
-    <%= link_to 'Deletar', @sistema, method: :delete, data: { confirm: 'Tem Certeza?' }, class:"btn btn-danger active" %>
-    <!--%= button_tag(type: 'submit', class: "btn btn-primary") do %>
-     <i class="glyphicon glyphicon-ok"></i> Criar
-    < end %-->
-  </div>
 <% end %>
 
 <!-- Modal Adiciona Responsavel-->

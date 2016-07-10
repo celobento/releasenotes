@@ -7,7 +7,7 @@
                     <h3 class="panel-title">Lista de Pessoas</h3>
                   </div>
                   <div class="col col-xs-6 text-right">
-                    
+
                     <%= link_to new_pessoa_path, class:"btn btn-primary btn-sm active" do %>
                       <span class="glyphicon glyphicon-plus"></span> Novo
                     <% end %>
@@ -38,10 +38,22 @@
         <td><%= pessoa.nome %></td>
         <td><%= pessoa.email %></td>
         <td><%= pessoa.matricula %></td>
-       
+
       </tr>
     <% end %>
   </tbody>
 </table>
+  </div>
+  <div class="panel-footer">
+    <div class="row">
+      <div class="col col-xs-6">
+        <%= page_entries_info @pessoas %>
+      </div>
+      <div class="col col-xs-6">
+        <ul class="pagination hidden-xs pull-right">
+          <li><%= will_paginate @pessoas, :previous_label => image_tag('previous.png', :alt => 'Anterior', :class => 'glyphicon glyphicon-chevron-left') ,:next_label => image_tag('next.png', :alt => 'Próximo', :class => 'btn_img') , :separator => ' | ', :params => params %> </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>

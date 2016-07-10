@@ -1,9 +1,30 @@
 <p id="notice"><%= notice %></p>
 
+<div class="panel panel-default panel-table">
+              <div class="panel-heading">
+                <div class="row">
+                  <div class="col col-xs-12">
+                    <h3 class="panel-title">Tipo de Integração</h3>
+                  </div>
+
+                </div>
+              </div>
+              <div class="panel-body table-responsive">
+                <div class="panel-show">
 <p>
   <strong>Nome:</strong>
-  <%= @tipo_integracao.nome %>
-</p>
+  <output type="text" class="form-control" id="nome" ><%= @tipo_integracao.nome %></output>
+  </p>
+</div>
 
+</div>
+<div class="panel-footer">
+<div class="row">
+<div class="col col-xs-12">
 <%= link_to 'Editar', edit_tipo_integracao_path(@tipo_integracao), class:"btn btn-warning active" %>
 <%= link_to 'Voltar', tipo_integracoes_path, class:"btn btn-info active" %>
+</div>
+
+</div>
+</div>
+</div>

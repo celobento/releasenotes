@@ -1,18 +1,11 @@
 <% provide(:title, "#{texto_da_acao} Pessoa" ) %>
 
 <%= form_for(@pessoa) do |f| %>
-  <% if @pessoa.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@pessoa.errors.count, "error") %> prohibited this pessoa from being saved:</h2>
-
-      <ul>
-      <% @pessoa.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Pessoa</h3>
+  </div>
+  <div class="panel-body">
   <div class="form-group">
     <%= f.label :nome %><br>
     <%= f.text_field :nome, class:"form-control" %>
@@ -21,15 +14,25 @@
     <%= f.label :email %><br>
     <%= f.text_field :email, class:"form-control" %>
   </div>
-  
+
   <div class="form-group">
     <%= f.label :matricula %><br>
     <%= f.text_field :matricula, class:"form-control" %>
   </div>
-  <div class="actions">
-    <%= f.submit texto_da_acao, class:"btn btn-primary" %>
-    <%= link_to 'Voltar', pessoas_path, class:"btn btn-info active" %>
-    <%= link_to 'Visualizar', @pessoa, class:"btn btn-success active" %>
-    <%= link_to 'Deletar', @pessoa, method: :delete, data: { confirm: 'Tem Certeza?' }, class:"btn btn-danger active" %>
+
+</div>
+<div class="panel-footer">
+  <div class="row">
+    <div class="col col-xs-12">
+      <%= f.submit texto_da_acao, class:"btn btn-primary" %>
+      <%= link_to 'Voltar', pessoas_path, class:"btn btn-info active" %>
+      <% if @pessoa.new_record? == false %>
+        <%= link_to 'Deletar', @pessoa, method: :delete, data: { confirm: 'Tem Certeza?' }, class:"btn btn-danger active" %>
+      <% end %>
+    </div>
+
   </div>
+</div>
+</div>
+
 <% end %>

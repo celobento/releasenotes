@@ -23,26 +23,24 @@ class SistemasController < ApplicationController
   def edit
     @pessoas = Pessoa.all
     @pessoaSistema = PessoaSistema.new
+    @responsaveis_lista = PessoaSistema.where(sistema_id: @sistema.id).paginate(page: params[:page], :per_page => 10)
   end
-  
+
   def addpessoa
     put "Adicionando em sistema"
-  end 
+  end
 
   # POST /sistemas
   # POST /sistemas.json
   def create
     @sistema = Sistema.new(sistema_params)
 
-    respond_to do |format|
       if @sistema.save
-        format.html { redirect_to @sistema, notice: 'Sistema was successfully created.' }
-        format.json { render :show, status: :created, location: @sistema }
+        flash[:success] = "Sistema criado com sucesso !"
+        redirect_to sistemas_path
       else
-        format.html { render :new }
-        format.json { render json: @sistema.errors, status: :unprocessable_entity }
+
       end
-    end
   end
 
   # PATCH/PUT /sistemas/1

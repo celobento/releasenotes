@@ -25,16 +25,12 @@ class PessoasController < ApplicationController
   # POST /pessoas.json
   def create
     @pessoa = Pessoa.new(pessoa_params)
-
-    respond_to do |format|
       if @pessoa.save
-        format.html { redirect_to @pessoa, notice: 'Pessoa was successfully created.' }
-        format.json { render :show, status: :created, location: @pessoa }
+          flash[:success] = "Pessoa criada com sucesso !"
+          redirect_to pessoas_path
       else
-        format.html { render :new }
-        format.json { render json: @pessoa.errors, status: :unprocessable_entity }
+
       end
-    end
   end
 
   # PATCH/PUT /pessoas/1
@@ -51,7 +47,7 @@ class PessoasController < ApplicationController
         render :new
      #   format.html { render :edit }
     #    format.json { render json: @pessoa.errors, status: :unprocessable_entity }
-        
+
       end
    # end
   end

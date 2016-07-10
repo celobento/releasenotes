@@ -31,7 +31,7 @@
 }
 
 .panel-table .panel-footer .pagination{
-  margin:0; 
+  margin:0;
 }
 
 /*
@@ -62,7 +62,7 @@ LOGIN
     background-color:rgba(255,255,255,.8);
 }
 #login-dp .help-block{
-    font-size:12px    
+    font-size:12px
 }
 #login-dp .bottom{
     background-color:rgba(255,255,255,.8);
@@ -71,7 +71,7 @@ LOGIN
     padding:14px;
 }
 #login-dp .social-buttons{
-    margin:12px 0    
+    margin:12px 0
 }
 #login-dp .social-buttons a{
     width: 49%;
@@ -85,7 +85,7 @@ LOGIN
 }
 .btn-fb:hover{
     color: #fff;
-    background-color:#496ebc 
+    background-color:#496ebc
 }
 .btn-tw{
     color: #fff;
@@ -104,4 +104,10 @@ LOGIN
         background-color: inherit;
         border-top:0 none;
     }
+}
+
+/*geral CSS*/
+
+.panel-show{
+  padding:10px;
 }

@@ -4,7 +4,7 @@ class TipoIntegracoesController < ApplicationController
   # GET /tipo_integracoes
   # GET /tipo_integracoes.json
   def index
-    @tipo_integracoes = TipoIntegracao.all
+    @tipo_integracoes = TipoIntegracao.paginate(page: params[:page], :per_page => 10)
   end
 
   # GET /tipo_integracoes/1

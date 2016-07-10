@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'sessions/new'
+
   root 'pages#index'
   
   resources :caracteristica_releases, :only => [:new, :create, :destroy]
@@ -13,6 +15,7 @@ Rails.application.routes.draw do
   resources :sistemas
   resources :caracteristicas
   
+  get 'sessions/new' , :as => 'new_session'
   get 'pessoa_sistema/new'
   get 'pessoa_sistema/new'
   get 'pessoa_sistemas' => 'sistema#new'

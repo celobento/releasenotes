@@ -32,13 +32,11 @@
                     <% @release_notes.each do |release_note| %>
                       <tr>
                         <td align="center">
-                          
-                              <div class="form-inline">
-                               <%= link_to release_note_path(release_note, tab:"descricao"), class:"btn btn-default btn-sm" do %>
-                                  <span class="glyphicon glyphicon-pencil"></span>
-                                <% end %>
-                              </div>
-                            
+                          <div class="form-inline">
+                           <%= link_to release_note_path(release_note, tab:"descricao"), class:"btn btn-default btn-sm" do %>
+                              <span class="glyphicon glyphicon-pencil"></span>
+                            <% end %>
+                          </div>
                         </td>
                         <td><%= release_note.sistema.nome %></td>
                         <td><%= release_note.contexto %></td>

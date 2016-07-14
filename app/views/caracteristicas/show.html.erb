@@ -1,32 +1,30 @@
-    <p id="notice"><%= notice %></p>
+<p id="notice"><%= notice %></p>
 
-  <div class="panel panel-default panel-table">
-                <div class="panel-heading">
-                  <div class="row">
-                    <div class="col col-xs-12">
-                      <h3 class="panel-title">Caracteristica</h3>
-                    </div>
-
-                  </div>
-                </div>
-                <div class="panel-body table-responsive">
-                  <div class="panel-show">
+<% provide(:template, "admin" ) %>
 
 
+<div class="card card-default">
+  <div class="card-header bordered">
+    <div class="header-block">
+      <h3 class="title">Caracteristica</h3>
+    </div>
+  </div>
+  <div class="card-block">
                       <p>
                         <strong>Nome:</strong>
                         <output type="text" class="form-control" id="nome" ><%= @caracteristica.nome %></output>
                       </p>
                   </div>
 
-                </div>
-                <div class="panel-footer">
-                  <div class="row">
-                    <div class="col col-xs-12">
-                      <%= link_to 'Editar', edit_caracteristica_path(@caracteristica), class:"btn btn-warning active" %>
-                      <%= link_to 'Voltar', caracteristicas_path, class:"btn btn-info active" %>
-                    </div>
 
-                  </div>
-                </div>
+
+  <div class="card-footer">
+    <div class="row">
+      <div class="col">
+        <%= link_to 'Editar', edit_caracteristica_path(@caracteristica), class:"btn btn-warning active" %>
+        <%= link_to 'Voltar', caracteristicas_path, class:"btn btn-info active" %>
+      </div>
+      
+    </div>
+  </div>
 </div>

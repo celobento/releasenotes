@@ -1,15 +1,14 @@
 <p id="notice"><%= notice %></p>
-<div class="panel panel-default panel-table">
-              <div class="panel-heading">
-                <div class="row">
-                  <div class="col col-xs-12">
-                    <h3 class="panel-title">Sistema</h3>
-                  </div>
 
-                </div>
-              </div>
-              <div class="panel-body table-responsive">
-                <div class="panel-show">
+<% provide(:template, "admin" ) %>
+
+<div class="card card-default">
+  <div class="card-header bordered">
+    <div class="header-block">
+      <h3 class="title">Sistema</h3>
+    </div>
+  </div>
+  <div class="card-block">
 <p>
   <strong>Nome:</strong>
   <output type="text" class="form-control" id="nome" ><%= @sistema.nome %></output>
@@ -21,16 +20,15 @@
 </p>
 </div>
 
-</div>
-<div class="panel-footer">
-<div class="row">
-<div class="col col-xs-12">
 
-  <%= link_to 'Editar', edit_sistema_path(@sistema), class:"btn btn-warning active" %>
-  <%= link_to 'Voltar', sistemas_path, class:"btn btn-info active" %>
 
-</div>
-
-</div>
-</div>
+  <div class="card-footer">
+    <div class="row">
+      <div class="col">
+        <%= link_to 'Editar', edit_sistema_path(@sistema), class:"btn btn-warning active" %>
+        <%= link_to 'Voltar', sistemas_path, class:"btn btn-info active" %>
+      </div>
+      
+    </div>
+  </div>
 </div>

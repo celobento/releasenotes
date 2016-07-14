@@ -1,11 +1,16 @@
 <% provide(:title, "#{texto_da_acao} Pessoa" ) %>
+<% provide(:template, "admin" ) %>
 
 <%= form_for(@pessoa) do |f| %>
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">Pessoa</h3>
+
+
+<div class="card card-default">
+  <div class="card-header bordered">
+    <div class="header-block">
+      <h3 class="title">Pessoa</h3>
+    </div>
   </div>
-  <div class="panel-body">
+  <div class="card-block">
   <div class="form-group">
     <%= f.label :nome %><br>
     <%= f.text_field :nome, class:"form-control" %>
@@ -20,19 +25,23 @@
     <%= f.text_field :matricula, class:"form-control" %>
   </div>
 
-</div>
-<div class="panel-footer">
-  <div class="row">
-    <div class="col col-xs-12">
-      <%= f.submit texto_da_acao, class:"btn btn-primary" %>
-      <%= link_to 'Voltar', pessoas_path, class:"btn btn-info active" %>
-      <% if @pessoa.new_record? == false %>
-        <%= link_to 'Deletar', @pessoa, method: :delete, data: { confirm: 'Tem Certeza?' }, class:"btn btn-danger active" %>
-      <% end %>
-    </div>
 
-  </div>
 </div>
+
+
+
+  <div class="card-footer">
+    <div class="row">
+      <div class="col">
+         <%= f.submit texto_da_acao, class:"btn btn-primary" %>
+          <%= link_to 'Voltar', pessoas_path, class:"btn btn-info active" %>
+          <% if @pessoa.new_record? == false %>
+            <%= link_to 'Deletar', @pessoa, method: :delete, data: { confirm: 'Tem Certeza?' }, class:"btn btn-danger active" %>
+          <% end %>
+      </div>
+      
+    </div>
+  </div>
 </div>
 
 <% end %>

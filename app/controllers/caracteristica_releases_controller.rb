@@ -2,6 +2,8 @@ class CaracteristicaReleasesController < ApplicationController
   
   before_action :set_caracteristica_release, only: [:destroy]
   before_action :release_note_params, only: [:new]
+  def index
+  end
   
   def new
     @caracteristica_release = CaracteristicaRelease.new

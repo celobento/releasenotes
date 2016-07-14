@@ -1,6 +1,8 @@
+<% provide(:title, "Visualizar Release Notes" ) %>
+<% provide(:template, "admin" ) %>
+
 <p id="notice"><%= notice %></p>
 
-<% provide(:title, "Visualizar Release Notes" ) %>
 
 <%= form_for(@release_note) do |f| %>
   
@@ -13,193 +15,202 @@
     }
   </style>
 
-  <div class="panel panel-default">
-        <div class="panel-heading">
-      <h3 class="panel-title">Release Notes</h3>
+<div class="card card-default">
+  <div class="card-header bordered">
+    <div class="header-block">
+      <h3 class="title">Release Notes</h3>
     </div>
-    <div class="panel-body">
-      <div >
-        
-        <p>
+  </div>
+  <div class="card-block">
+     <p>
           <strong>Sistema:</strong>
           <output type="text" class="form-control" id="nome" ><%= @release_note.sistema.nome %></output>
         </p>
         
-        <ul class="nav nav-tabs">
-          <li class="<%= if params[:tab] == 'descricao' then 'nav active' else 'nav' end %>">
-            <a href="#descricao" data-toggle="tab">Dados Gerais</a>
+        <ul class="nav nav-tabs nav-tabs-bordered">
+          <li class="<%= if params[:tab] == 'descricao' then 'nav-item' else 'nav-item' end %>">
+            <a class="nav-link active" href="#descricao" role="tab" data-toggle="tab" data-target="#descricao" aria-controls="descricao">Dados Gerais</a>
           </li>
-          <li class="<%= if params[:tab] == 'caracteristicas' then 'nav active' else 'nav' end %>" >
-            <a href="#caracteristicas" data-toggle="tab">Características</a>
+          <li class="<%= if params[:tab] == 'caracteristicas' then 'nav-item' else 'nav-item' end %>">
+            <a class="nav-link" href="#caracteristicas" role="tab" data-toggle="tab" data-target="#caracteristicas" aria-controls="caracteristicas">Características</a>
           </li>
-          <li class="<%= if params[:tab] == 'integracoes' then 'nav active' else 'nav' end %>" >
-            <a href="#integracoes" data-toggle="tab">Integrações</a>
+          <li class="<%= if params[:tab] == 'integracoes' then 'nav-item' else 'nav-item' end %>">
+            <a class="nav-link" href="#integracoes" role="tab" data-toggle="tab" data-target="#integracoes" aria-controls="integracoes">Integrações</a>
           </li>
-          <li class="<%= if params[:tab] == 'defeitos' then 'nav active' else 'nav' end %>" >
-            <a href="#defeitos" data-toggle="tab">Defeitos</a>
+          <li class="<%= if params[:tab] == 'defeitos' then 'nav-item' else 'nav-item' end %>">
+            <a class="nav-link" href="#defeitos" role="tab" data-toggle="tab" data-target="#defeitos" aria-controls="defeitos">Defeitos</a>
           </li>
-          <li class="<%= if params[:tab] == 'observacoes' then 'nav active' else 'nav' end %>" >
-            <a href="#observacoes" data-toggle="tab">Observações</a>
+          <li class="<%= if params[:tab] == 'observacoes' then 'nav-item' else 'nav-item' end %>">
+            <a class="nav-link" href="#observacoes" role="tab" data-toggle="tab" data-target="#observacoes" aria-controls="observacoes">Observações</a>
           </li>
+          
         </ul>
-        <div class="tab-content">
-          <div class="<%= if (params[:tab] == 'descricao' || !params[:tab])then 'tab-pane fade in active'  else 'tab-pane fade' end%>" id="descricao">
-            
-            <p>
-              <strong>Path deploy:</strong>
-              <output type="text" class="form-control" id="nome" ><%= @release_note.path_deploy %></output>
-            </p>
-            
-            <p>
-              <strong>Path svn:</strong>
-              <output type="text" class="form-control" id="nome" ><%= @release_note.path_svn %></output>
-            </p>
-            
-            <p>
-              <strong>Contexto:</strong>
-              <output type="text" class="form-control" id="nome" ><%= @release_note.contexto %></output>
-            </p>
-            
-            <p>
-              <strong>Motivacao:</strong>
-              <output type="text" class="form-control" id="nome" ><%= @release_note.motivacao %></output>
-            </p>
-            
-            <p>
-              <strong>Instrucao uso:</strong>
-              <output type="text-area" class="form-control" id="nome" ><%= @release_note.instrucao_uso %></output>
-            </p>
-            
-            <p>
-              <strong>Monitoramento:</strong>
-              <output type="text" class="form-control" id="nome" ><%= @release_note.monitoramento %></output>
-            </p>
-          </div>
-          <div class="<%= if (params[:tab] == 'caracteristicas' || !params[:tab])then 'tab-pane fade in active'  else 'tab-pane fade' end%>" id="caracteristicas">
-            
-             <div class="panel panel-default">
-              <div class="panel-heading">
-                <h3 class="panel-title">Lista de Caracteristicas</h3>
-              </div> 
-              <div class="panel-body table-responsive">
-                <table class="table table-hover">
-                  <thead>
-                    <tr>
-                      <th>Caracteristica</th>
-                      <th>Descrição</th>
-                      <th>Status</th>
-                      
-                    </tr>
-                  </thead>
-                
-                  <tbody>
-                    <% @caracteristica_releases.each do |cr| %>
+        <div class="tab-content tabs-bordered">
+            <div role="tabpanel" class="<%= if (params[:tab] == 'descricao' || !params[:tab])then 'tab-pane fade in active'  else 'tab-pane fade' end%>" id="descricao">
+              
+              <p>
+                <strong>Path deploy:</strong>
+                <output type="text" class="form-control" id="nome" ><%= @release_note.path_deploy %></output>
+              </p>
+              
+              <p>
+                <strong>Path svn:</strong>
+                <output type="text" class="form-control" id="nome" ><%= @release_note.path_svn %></output>
+              </p>
+              
+              <p>
+                <strong>Contexto:</strong>
+                <output type="text" class="form-control" id="nome" ><%= @release_note.contexto %></output>
+              </p>
+              
+              <p>
+                <strong>Motivacao:</strong>
+                <output type="text" class="form-control" id="nome" ><%= @release_note.motivacao %></output>
+              </p>
+              
+              <p>
+                <strong>Instrucao uso:</strong>
+                <output type="text-area" class="form-control" id="nome" ><%= @release_note.instrucao_uso %></output>
+              </p>
+              
+              <p>
+                <strong>Monitoramento:</strong>
+                <output type="text" class="form-control" id="nome" ><%= @release_note.monitoramento %></output>
+              </p>
+            </div>
+            <div role="tabpanel" class="<%= if (params[:tab] == 'caracteristicas' || !params[:tab])then 'tab-pane fade in active'  else 'tab-pane fade' end%>" id="caracteristicas">
+              
+               <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Lista de Caracteristicas</h3>
+                </div> 
+                <div class="panel-body table-responsive">
+                  <table class="table table-hover">
+                    <thead>
                       <tr>
-                        <td><%= cr.caracteristica.nome %></td>
-                        <td><%= cr.descricao %></td>
-                        <td>
+                        <th>Caracteristica</th>
+                        <th>Descrição</th>
+                        <th>Status</th>
+                        
+                      </tr>
+                    </thead>
+                  
+                    <tbody>
+                      <% @caracteristica_releases.each do |cr| %>
+                        <tr>
+                          <td><%= cr.caracteristica.nome %></td>
+                          <td><%= cr.descricao %></td>
+                          <td>
+                            
+                            <%= if cr.status == true then image_tag("circle_green.png", alt:"Sim") else  image_tag("circle_red.png", alt:"Não") end %>
+                          </td>
                           
-                          <%= if cr.status == true then image_tag("circle_green.png", alt:"Sim") else  image_tag("circle_red.png", alt:"Não") end %>
-                        </td>
-                        
-                      </tr>
-                    <% end %>
-                  </tbody>
-                </table>
+                        </tr>
+                      <% end %>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="<%= if (params[:tab] == 'integracoes' || !params[:tab])then 'tab-pane fade in active'  else 'tab-pane fade' end%>" id="integracoes">
-            
-             <div class="panel panel-default">
-              <div class="panel-heading">
-                <h3 class="panel-title">Lista de Integrações</h3>
-              </div>
-              <div class="panel-body table-responsive">
-                <table class="table table-hover">
-                  <thead>
-                    <tr>
-                      <th>Tipo</th>
-                      <th>Descrição</th>
-                      
-                    </tr>
-                  </thead>
-                
-                  <tbody>
-                    <% @integracoes.each do |integracao| %>
+            <div role="tabpanel" class="<%= if (params[:tab] == 'integracoes' || !params[:tab])then 'tab-pane fade in active'  else 'tab-pane fade' end%>" id="integracoes">
+              
+               <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Lista de Integrações</h3>
+                </div>
+                <div class="panel-body table-responsive">
+                  <table class="table table-hover">
+                    <thead>
                       <tr>
-                        <td><%= integracao.tipo_integracao.nome %></td>
-                        <td><%= integracao.descricao %></td>
+                        <th>Tipo</th>
+                        <th>Descrição</th>
                         
                       </tr>
-                    <% end %>
-                  </tbody>
-                </table>
+                    </thead>
+                  
+                    <tbody>
+                      <% @integracoes.each do |integracao| %>
+                        <tr>
+                          <td><%= integracao.tipo_integracao.nome %></td>
+                          <td><%= integracao.descricao %></td>
+                          
+                        </tr>
+                      <% end %>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="<%= if (params[:tab] == 'defeitos' || !params[:tab])then 'tab-pane fade in active'  else 'tab-pane fade' end%>" id="defeitos">
-            
-             <div class="panel panel-default">
-              <div class="panel-heading">
-                <h3 class="panel-title">Lista de Defeitos</h3>
-              </div>
-              <div class="panel-body table-responsive">
-                <table class="table table-hover">
-                  <thead>
-                    <tr>
-                      <th>Descrição</th>
-                      
-                    </tr>
-                  </thead>
-                
-                  <tbody>
-                    <% @defeitos.each do |defeito| %>
+            <div role="tabpanel" class="<%= if (params[:tab] == 'defeitos' || !params[:tab])then 'tab-pane fade in active'  else 'tab-pane fade' end%>" id="defeitos">
+              
+               <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Lista de Defeitos</h3>
+                </div>
+                <div class="panel-body table-responsive">
+                  <table class="table table-hover">
+                    <thead>
                       <tr>
-                        <td><%= defeito.descricao %></td>
+                        <th>Descrição</th>
                         
                       </tr>
-                    <% end %>
-                  </tbody>
-                </table>
+                    </thead>
+                  
+                    <tbody>
+                      <% @defeitos.each do |defeito| %>
+                        <tr>
+                          <td><%= defeito.descricao %></td>
+                          
+                        </tr>
+                      <% end %>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="<%= if (params[:tab] == 'observacoes' || !params[:tab])then 'tab-pane fade in active'  else 'tab-pane fade' end%>" id="observacoes">
-            
-             <div class="panel panel-default">
-              <div class="panel-heading">
-                <h3 class="panel-title">Lista de Observações</h3>
-              </div>
-              <div class="panel-body table-responsive">
-                <table class="table table-hover">
-                  <thead>
-                    <tr>
-                      <th>Descrição</th>
-                      
-                    </tr>
-                  </thead>
-                
-                  <tbody>
-                    <% @observacoes.each do |observacao| %>
+            <div role="tabpanel" class="<%= if (params[:tab] == 'observacoes' || !params[:tab])then 'tab-pane fade in active'  else 'tab-pane fade' end%>" id="observacoes">
+              
+               <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Lista de Observações</h3>
+                </div>
+                <div class="panel-body table-responsive">
+                  <table class="table table-hover">
+                    <thead>
                       <tr>
-                        <td><%= observacao.descricao %></td>
+                        <th>Descrição</th>
                         
                       </tr>
-                    <% end %>
-                  </tbody>
-                </table>
+                    </thead>
+                  
+                    <tbody>
+                      <% @observacoes.each do |observacao| %>
+                        <tr>
+                          <td><%= observacao.descricao %></td>
+                          
+                        </tr>
+                      <% end %>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
-          </div>
+        </div>
+          
+      
+    </div>
+
+
+  <div class="card-footer">
+    <div class="row">
+      <div class="col">
+        <%= link_to 'Editar', edit_release_note_path(@release_note, tab:"descricao"), class:"btn btn-warning active" %>
+        <%= link_to 'Voltar', release_notes_path, class:"btn btn-info" %>
       </div>
+      
     </div>
   </div>
 </div>
-   <div class="actions">
-    <%= link_to 'Editar', edit_release_note_path(@release_note, tab:"descricao"), class:"btn btn-warning active" %>
-    <%= link_to 'Voltar', release_notes_path, class:"btn btn-info active" %>
-  </div>
 <% end %>
 
 

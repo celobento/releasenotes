@@ -1,4 +1,5 @@
 <% provide(:title, "#{texto_da_acao} Release Notes" ) %>
+<% provide(:template, "admin" ) %>
 
 <%= form_for(@release_note) do |f| %>
 
@@ -8,38 +9,38 @@
     }
   </style>
 
-  <div class="panel panel-default">
-        <div class="panel-heading">
-      <h3 class="panel-title">Release Notes</h3>
+<div class="card card-default">
+  <div class="card-header bordered">
+    <div class="header-block">
+      <h3 class="title">Release Notes</h3>
     </div>
-    <div class="panel-body">
-      <div >
+  </div>
+  <div class="card-block">
+     <div class="form-group">
+        <%= f.label :sistema_id %><br>
+        <%= f.collection_select :sistema_id, @sistemas, :id, :nome , {}, class:"form-control" %>
+      </div>
 
-        <div class="form-group">
-          <%= f.label :sistema_id %><br>
-          <%= f.collection_select :sistema_id, @sistemas, :id, :nome , {}, class:"form-control" %>
-        </div>
-
-        <ul class="nav nav-tabs">
-          <li class="<%= if params[:tab] == 'descricao' then 'nav active' else 'nav' end %>">
-            <a href="#descricao" data-toggle="tab">Dados Gerais</a>
+        <ul class="nav nav-tabs nav-tabs-bordered">
+          <li class="nav-item">
+            <a class="<%= if params[:tab] == 'descricao' then 'nav-link active' else 'nav-link' end %>" href="#descricao" role="tab" data-toggle="tab" data-target="#descricao" aria-controls="descricao">Dados Gerais</a>
           </li>
           <% if @release_note.new_record? == false %>
-            <li class="<%= if params[:tab] == 'caracteristicas' then 'nav active' else 'nav' end %>" >
-              <a href="#caracteristicas" data-toggle="tab">Características</a>
+            <li class="nav-item">
+              <a class="<%= if params[:tab] == 'caracteristicas' then 'nav-link active' else 'nav-link' end %>" href="#caracteristicas" role="tab" data-toggle="tab" data-target="#caracteristicas" aria-controls="caracteristicas">Características</a>
             </li>
-            <li class="<%= if params[:tab] == 'integracoes' then 'nav active' else 'nav' end %>" >
-              <a href="#integracoes" data-toggle="tab">Integrações</a>
+            <li class="nav-item">
+              <a class="<%= if params[:tab] == 'integracoes' then 'nav-link active' else 'nav-link' end %>" href="#integracoes" role="tab" data-toggle="tab" data-target="#integracoes" aria-controls="integracoes">Integrações</a>
             </li>
-            <li class="<%= if params[:tab] == 'defeitos' then 'nav active' else 'nav' end %>" >
-              <a href="#defeitos" data-toggle="tab">Defeitos</a>
+            <li class="nav-item">
+              <a class="<%= if params[:tab] == 'defeitos' then 'nav-link active' else 'nav-link' end %>" href="#defeitos" role="tab" data-toggle="tab" data-target="#defeitos" aria-controls="defeitos">Defeitos</a>
             </li>
-            <li class="<%= if params[:tab] == 'observacoes' then 'nav active' else 'nav' end %>" >
-              <a href="#observacoes" data-toggle="tab">Observações</a>
+            <li class="nav-item">
+              <a class="<%= if params[:tab] == 'observacoes' then 'nav-link active' else 'nav-link' end %>" href="#observacoes" role="tab" data-toggle="tab" data-target="#observacoes" aria-controls="observacoes">Observações</a>
             </li>
           <% end %>
         </ul>
-        <div class="tab-content">
+        <div class="tab-content tabs-bordered">
           <div class="<%= if (params[:tab] == 'descricao' || !params[:tab])then 'tab-pane fade in active'  else 'tab-pane fade' end%>" id="descricao">
 
             <div class="form-group">
@@ -69,21 +70,30 @@
           </div>
           <% if @release_note.new_record? == false %>
           <div class="<%= if (params[:tab] == 'caracteristicas' || !params[:tab])then 'tab-pane fade in active'  else 'tab-pane fade' end%>" id="caracteristicas">
-            <div class="button-add-tab">
-               <%= link_to 'Adicionar', new_caracteristica_release_path(:release_id => @release_note.id), class:"btn btn-primary active" %>
-             </div>
-             <div class="panel panel-default">
-              <div class="panel-heading">
-                <h3 class="panel-title">Lista de Caracteristicas</h3>
+            
+             <div class="card card-default">
+              <div class="card-header bordered">
+                <div class="header-block">
+                  <h3 class="title">Caracteristicas</h3>
+                </div>
+                <div class="header-block pull-right">
+                  <%= link_to new_caracteristica_release_path(:release_id => @release_note.id), class:"btn btn-primary btn-sm active" do %>
+                    <span class="fa fa-plus"></span> Novo
+                  <% end %>
+                </div>
               </div>
-              <div class="panel-body table-responsive">
-                <table class="table table-hover">
-                  <thead>
+              <div class="card-block table-responsive">
+                <table class="table table-striped table-bordered table-list">
+                <thead>
                     <tr>
                       <th>Caracteristica</th>
                       <th>Descrição</th>
                       <th>Status</th>
-                      <th>Ações</th>
+                      <th>
+                        <div align="center">
+                          <span class="fa fa-cog"></span>
+                        </div>
+                      </th>
                     </tr>
                   </thead>
 
@@ -96,31 +106,48 @@
 
                           <%= if cr.status == true then image_tag("circle_green.png", alt:"Sim") else  image_tag("circle_red.png", alt:"Não") end %>
                         </td>
-                        <td>
-                          <td><%= link_to 'Remover', cr, method: :delete, data: { confirm: 'Tem Certeza?' }, class:"btn btn-danger active" %></td>
+                        
+                          
+                          <td align="center">
+                            <div class="form-inline">
+                             <%= link_to cr, method: :delete, class:"btn btn-danger btn-sm" do %>
+                                <span class="fa fa-trash"></span>
+                              <% end %>
+                            </div>
+                          
                         </td>
                       </tr>
                     <% end %>
                   </tbody>
                 </table>
               </div>
+              
             </div>
+             
           </div>
           <div class="<%= if (params[:tab] == 'integracoes' || !params[:tab])then 'tab-pane fade in active'  else 'tab-pane fade' end%>" id="integracoes">
-            <div class="button-add-tab">
-               <%= link_to 'Adicionar', new_integracao_path(:release_id => @release_note.id), class:"btn btn-primary active" %>
-             </div>
-             <div class="panel panel-default">
-              <div class="panel-heading">
-                <h3 class="panel-title">Lista de Integrações</h3>
+             <div class="card card-default">
+              <div class="card-header bordered">
+                <div class="header-block">
+                  <h3 class="title">Integrações</h3>
+                </div>
+                <div class="header-block pull-right">
+                  <%= link_to new_integracao_path(:release_id => @release_note.id), class:"btn btn-primary btn-sm active" do %>
+                    <span class="fa fa-plus"></span> Novo
+                  <% end %>
+                </div>
               </div>
-              <div class="panel-body table-responsive">
-                <table class="table table-hover">
+              <div class="card-block table-responsive">
+                <table class="table table-striped table-bordered table-list">
                   <thead>
                     <tr>
                       <th>Tipo</th>
                       <th>Descrição</th>
-                      <th>Ações</th>
+                      <th>
+                        <div align="center">
+                          <span class="fa fa-cog"></span>
+                        </div>
+                      </th>
                     </tr>
                   </thead>
 
@@ -129,30 +156,46 @@
                       <tr>
                         <td><%= integracao.tipo_integracao.nome %></td>
                         <td><%= integracao.descricao %></td>
-                        <td>
-                          <td><%= link_to 'Remover', integracao, method: :delete, data: { confirm: 'Tem Certeza?' }, class:"btn btn-danger active" %></td>
+                        <td align="center">
+                            <div class="form-inline">
+                             <%= link_to integracao, method: :delete, class:"btn btn-danger btn-sm" do %>
+                                <span class="fa fa-trash"></span>
+                              <% end %>
+                            </div>
+                          
                         </td>
                       </tr>
                     <% end %>
                   </tbody>
                 </table>
               </div>
+              
             </div>
+             
           </div>
           <div class="<%= if (params[:tab] == 'defeitos' || !params[:tab])then 'tab-pane fade in active'  else 'tab-pane fade' end%>" id="defeitos">
-            <div class="button-add-tab">
-               <%= link_to 'Adicionar', new_defeito_path(:release_id => @release_note.id), class:"btn btn-primary active" %>
-             </div>
-             <div class="panel panel-default">
-              <div class="panel-heading">
-                <h3 class="panel-title">Lista de Defeitos</h3>
+             
+             <div class="card card-default">
+              <div class="card-header bordered">
+                <div class="header-block">
+                  <h3 class="title">Defeitos</h3>
+                </div>
+                <div class="header-block pull-right">
+                  <%= link_to new_defeito_path(:release_id => @release_note.id), class:"btn btn-primary btn-sm active" do %>
+                    <span class="fa fa-plus"></span> Novo
+                  <% end %>
+                </div>
               </div>
-              <div class="panel-body table-responsive">
-                <table class="table table-hover">
+              <div class="card-block table-responsive">
+                <table class="table table-striped table-bordered table-list">
                   <thead>
                     <tr>
                       <th>Descrição</th>
-                      <th>Ações</th>
+                      <th>
+                        <div align="center">
+                          <span class="fa fa-cog"></span>
+                        </div>
+                      </th>
                     </tr>
                   </thead>
 
@@ -160,30 +203,47 @@
                     <% @defeitos.each do |defeito| %>
                       <tr>
                         <td><%= defeito.descricao %></td>
-                        <td>
-                          <td><%= link_to 'Remover', defeito, method: :delete, data: { confirm: 'Tem Certeza?' }, class:"btn btn-danger active" %></td>
+                        <td align="center">
+                            <div class="form-inline">
+                             <%= link_to defeito, method: :delete, class:"btn btn-danger btn-sm" do %>
+                                <span class="fa fa-trash"></span>
+                              <% end %>
+                            </div>
+                          
                         </td>
                       </tr>
                     <% end %>
                   </tbody>
                 </table>
               </div>
+              
             </div>
+             
+             
           </div>
           <div class="<%= if (params[:tab] == 'observacoes' || !params[:tab])then 'tab-pane fade in active'  else 'tab-pane fade' end%>" id="observacoes">
-            <div class="button-add-tab">
-               <%= link_to 'Adicionar', new_observacao_path(:release_id => @release_note.id), class:"btn btn-primary active" %>
-             </div>
-             <div class="panel panel-default">
-              <div class="panel-heading">
-                <h3 class="panel-title">Lista de Observações</h3>
+             
+             <div class="card card-default">
+              <div class="card-header bordered">
+                <div class="header-block">
+                  <h3 class="title">Observações</h3>
+                </div>
+                <div class="header-block pull-right">
+                  <%= link_to new_observacao_path(:release_id => @release_note.id), class:"btn btn-primary btn-sm active" do %>
+                    <span class="fa fa-plus"></span> Novo
+                  <% end %>
+                </div>
               </div>
-              <div class="panel-body table-responsive">
-                <table class="table table-hover">
+              <div class="card-block table-responsive">
+                <table class="table table-striped table-bordered table-list">
                   <thead>
                     <tr>
                       <th>Descrição</th>
-                      <th>Ações</th>
+                      <th>
+                        <div align="center">
+                          <span class="fa fa-cog"></span>
+                        </div>
+                      </th>
                     </tr>
                   </thead>
 
@@ -191,26 +251,38 @@
                     <% @observacoes.each do |observacao| %>
                       <tr>
                         <td><%= observacao.descricao %></td>
-                        <td>
-                          <td><%= link_to 'Remover', observacao, method: :delete, data: { confirm: 'Tem Certeza?' }, class:"btn btn-danger active" %></td>
+                        <td align="center">
+                            <div class="form-inline">
+                             <%= link_to observacao, method: :delete, class:"btn btn-danger btn-sm" do %>
+                                <span class="fa fa-trash"></span>
+                              <% end %>
+                            </div>
+                          
                         </td>
                       </tr>
                     <% end %>
                   </tbody>
                 </table>
               </div>
+              
             </div>
+             
           </div>
           <% end %>
+        </div>
       </div>
-    </div>
+      <div class="card-footer">
+        <div class="row">
+          <div class="col">
+            <%= f.submit "Salvar", class:"btn btn-primary" %>
+            <%= link_to 'Voltar', release_notes_path, class:"btn btn-info" %>
+            <% if @release_note.new_record? == false %>
+              <%= link_to 'Deletar', @release_note, method: :delete, data: { confirm: 'Tem Certeza?' }, class:"btn btn-danger active" %>
+            <% end %>
+          </div>
+          
+        </div>
+      </div>
   </div>
-</div>
-   <div class="actions">
-    <%= f.submit "Salvar", class:"btn btn-primary" %>
-    <%= link_to 'Voltar', release_notes_path, class:"btn btn-info active" %>
-    <% if @release_note.new_record? == false %>
-      <%= link_to 'Deletar', @release_note, method: :delete, data: { confirm: 'Tem Certeza?' }, class:"btn btn-danger active" %>
-    <% end %>
-  </div>
+
 <% end %>

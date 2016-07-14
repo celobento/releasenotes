@@ -1,79 +1,81 @@
-<header>
-    <nav class="navbar navbar-fixed-top navbar-inverse">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a href="#" class="navbar-brand">Release Notes</a>
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-        </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-          <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a href="#home">Home</a></li>
-            <li><%= link_to "Releases", release_notes_path %></li>
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Gestão<span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><%= link_to "Sistemas", sistemas_path %></li>
-                <li><%= link_to "Pessoas", pessoas_path %></li>
-                <li><%= link_to "Tipos de Integração", tipo_integracoes_path %></li>
-                <li><%= link_to "Caracteristicas", caracteristicas_path %></li>
-              </ul>
+<header class="header">
+    <div class="header-block header-block-collapse hidden-lg-up"> <button class="collapse-btn" id="sidebar-collapse-btn">
+<i class="fa fa-bars"></i>
+</button> </div>
+    <div class="header-block header-block-search hidden-sm-down">
+        <!--form role="search">
+            <div class="input-container"> <i class="fa fa-search"></i> <input type="search" placeholder="Search">
+                <div class="underline"></div>
+            </div>
+        </form-->
+    </div>
+    <div class="header-block header-block-buttons">
+        <!--a href="https://github.com/modularcode/modular-admin-html" class="btn btn-oval btn-sm rounded-s header-btn"> <i class="fa fa-github-alt"></i> View on GitHub </a>
+        <a href="https://github.com/modularcode/modular-admin-html/releases/download/v1.0.1/modular-admin-html-1.0.1.zip" class="btn btn-oval btn-sm rounded-s header-btn"> <i class="fa fa-cloud-download"></i> Download .zip </a-->
+    </div>
+    <div class="header-block header-block-nav">
+        <ul class="nav-profile">
+            <!--li class="notifications new">
+                <a href="" data-toggle="dropdown"> <i class="fa fa-bell-o"></i> 
+                    <sup>
+                <span class="counter">8</span>
+              </sup> 
+          </a>
+                <div class="dropdown-menu notifications-dropdown-menu">
+                    <ul class="notifications-container">
+                        <li>
+                            <a href="" class="notification-item">
+                                <div class="img-col">
+                                    <div class="img" style="background-image: url('assets/faces/3.jpg')"></div>
+                                </div>
+                                <div class="body-col">
+                                    <p> <span class="accent">Zack Alien</span> pushed new commit: <span class="accent">Fix page load performance issue</span>. </p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" class="notification-item">
+                                <div class="img-col">
+                                    <div class="img" style="background-image: url('assets/faces/5.jpg')"></div>
+                                </div>
+                                <div class="body-col">
+                                    <p> <span class="accent">Amaya Hatsumi</span> started new task: <span class="accent">Dashboard UI design.</span>. </p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" class="notification-item">
+                                <div class="img-col">
+                                    <div class="img" style="background-image: url('assets/faces/8.jpg')"></div>
+                                </div>
+                                <div class="body-col">
+                                    <p> <span class="accent">Andy Nouman</span> deployed new version of <span class="accent">NodeJS REST Api V3</span> </p>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <footer>
+                        <ul>
+                            <li> <a href="">
+      View All
+    </a> </li>
+                        </ul>
+                    </footer>
+                </div>
+            </li-->
+            <li class="profile dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                    <div class="img" style="background-image: url('https://avatars3.githubusercontent.com/u/3959008?v=3&s=40')"> </div> <span class="name">
+John Doe
+</span> </a>
+                <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <a class="dropdown-item" href="#"> <i class="fa fa-user icon"></i> Profile </a>
+                    <a class="dropdown-item" href="#"> <i class="fa fa-bell icon"></i> Notifications </a>
+                    <a class="dropdown-item" href="#"> <i class="fa fa-gear icon"></i> Settings </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="login.html"> <i class="fa fa-power-off icon"></i> Logout </a>
+                </div>
             </li>
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Minha Conta <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Meu Perfil</a></li>
-                <li><a href="#">Alterar Senha</a></li>
-                <li><a href="#">Loggout</a></li>
-              </ul>
-            </li>
-            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-            <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
-			<ul id="login-dp" class="dropdown-menu">
-				<li>
-					 <div class="row">
-							<div class="col-md-12">
-								
-								<!--div class="social-buttons">
-									<a href="#" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a>
-									<a href="#" class="btn btn-tw"><i class="fa fa-twitter"></i> Twitter</a>
-								</div-->
-                                
-								 <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
-										<div class="form-group">
-											 <label class="sr-only" for="exampleInputEmail2">Email</label>
-											 <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email" required>
-										</div>
-										<div class="form-group">
-											 <label class="sr-only" for="exampleInputPassword2">Senha</label>
-											 <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Senha" required>
-                                             <div class="help-block text-right"><a href="">Esqueceu a senha ?</a></div>
-										</div>
-										<div class="form-group">
-											 <button type="submit" class="btn btn-primary btn-block">Login</button>
-										</div>
-										<div class="checkbox">
-											 <label>
-											 <input type="checkbox"> Mantenha-me logado
-											 </label>
-										</div>
-								 </form>
-							</div>
-							<div class="bottom text-center">
-								Novo por aqui ? <%= link_to "Registre-se", sessions_new_path %>
-							</div>
-					 </div>
-				</li>
-			</ul>
-        </li>
-          </ul>
-          
-        </div>
-      </div>
-    </nav>
+        </ul>
+    </div>
 </header>

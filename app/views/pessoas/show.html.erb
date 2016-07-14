@@ -1,16 +1,14 @@
+<% provide(:template, "admin" ) %>
+
 <p id="notice"><%= notice %></p>
 
-<div class="panel panel-default panel-table">
-              <div class="panel-heading">
-                <div class="row">
-                  <div class="col col-xs-12">
-                    <h3 class="panel-title">Pessoa</h3>
-                  </div>
-
-                </div>
-              </div>
-              <div class="panel-body table-responsive">
-                <div class="panel-show">
+<div class="card card-default">
+  <div class="card-header bordered">
+    <div class="header-block">
+      <h3 class="title">Pessoa</h3>
+    </div>
+  </div>
+  <div class="card-block">
 
                   <div class="form-group">
                     <label for="nome">Nome</label>
@@ -26,16 +24,13 @@
                     <label for="matricula">Matricula</label>
                     <output type="text" class="form-control" id="matricula" ><%= @pessoa.matricula %></output>
                   </div>
-                </div>
-
-              </div>
-              <div class="panel-footer">
-                <div class="row">
-                  <div class="col col-xs-12">
-                    <%= link_to 'Editar', edit_pessoa_path(@pessoa), class:"btn btn-warning active" %>
-                    <%= link_to 'Voltar', pessoas_path, class:"btn btn-info active" %>
-                  </div>
-
-                </div>
-              </div>
+<div class="card-footer">
+    <div class="row">
+      <div class="col">
+         <%= link_to 'Editar', edit_pessoa_path(@pessoa), class:"btn btn-warning active" %>
+         <%= link_to 'Voltar', pessoas_path, class:"btn btn-info active" %>
+      </div>
+      
+    </div>
+  </div>
 </div>

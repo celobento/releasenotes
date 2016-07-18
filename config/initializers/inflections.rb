@@ -27,4 +27,6 @@ inflect.irregular 'tipo_integracao', 'tipo_integracoes'
 inflect.irregular 'integracao', 'integracoes'
 inflect.irregular 'release_note', 'release_notes'
 inflect.irregular 'caracteristica_release', 'caracteristica_releases'
+inflect.irregular 'perfil', 'perfis'
+inflect.irregular 'usuario', 'usuarios'
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160706160554) do
+ActiveRecord::Schema.define(version: 20160718181733) do
 
   create_table "caracteristica_releases", force: :cascade do |t|
     t.integer  "caracteristica_id"
@@ -60,6 +60,15 @@ ActiveRecord::Schema.define(version: 20160706160554) do
 
   add_index "observacoes", ["release_note_id"], name: "index_observacoes_on_release_note_id"
 
+  create_table "perfis", force: :cascade do |t|
+    t.string   "nome"
+    t.string   "role"
+    t.string   "descrcicao"
+    t.boolean  "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "pessoa_sistemas", force: :cascade do |t|
     t.integer  "sistema_id"
     t.integer  "pessoa_id"
@@ -105,5 +114,19 @@ ActiveRecord::Schema.define(version: 20160706160554) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "usuarios", force: :cascade do |t|
+    t.string   "nome"
+    t.string   "email"
+    t.boolean  "status"
+    t.integer  "perfil_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.string   "password_digest"
+    t.string   "relembreme_digest"
+    t.string   "aceita_termo_digest"
+  end
+
+  add_index "usuarios", ["perfil_id"], name: "index_usuarios_on_perfil_id"
 
 end

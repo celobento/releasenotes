@@ -1,0 +1,59 @@
+<% provide(:template, "admin" ) %>
+
+<p id="notice"><%= notice %></p>
+
+<div class="card card-default">
+  <div class="card-header bordered">
+    <div class="header-block">
+      <h3 class="title">Perfis</h3>
+    </div>
+    <div class="header-block pull-right">
+      <%= link_to new_perfil_path, class:"btn btn-primary btn-sm active" do %>
+        <span class="fa fa-plus"></span> Novo
+      <% end %>
+    </div>
+  </div>
+  <div class="card-block table-responsive">
+    <table class="table table-striped table-bordered table-list">
+      <thead>
+    <tr>
+      <th>
+        <div align="center">
+          <span class="fa fa-cog"></span>
+        </div>
+      </th>
+      <th>Nome</th>
+      <th>Role</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @perfis.each do |perfil| %>
+      <tr>
+        <td align="center">
+          <div class="form-inline">
+           <%= link_to perfil, class:"btn btn-primary btn-sm" do %>
+              <span class="fa fa-pencil"></span>
+            <% end %>
+          </div>
+        </td>
+        <td><%= perfil.nome %></td>
+        <td><%= perfil.role %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+  </div>
+  <div class="card-footer">
+    <div class="row">
+      <div class="col hidden-xs-down col-md-4">
+        <%= page_entries_info @perfis %>
+      </div>
+      <div class="col col-xs-12 col-md-8">
+        <ul class="pagination  pull-right">
+          <li><%= will_paginate @perfis, :previous_label => image_tag('previous.png', :alt => 'Anterior', :class => 'glyphicon glyphicon-chevron-left') ,:next_label => image_tag('next.png', :alt => 'Próximo', :class => 'btn_img') , :separator => ' | ', :params => params %> </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

@@ -9,26 +9,23 @@
 	<span class="l l3"></span>
 	<span class="l l4"></span>
 	<span class="l l5"></span>
-</div>        ModularAdmin
+</div>        Release Notes
 </h1> </header>
             <div class="auth-content">
-                <p class="text-xs-center">LOGIN TO CONTINUE</p>
+                <p class="text-xs-center">LOGIN</p>
                 <form id="login-form" action="/index.html" method="GET" novalidate="">
-                    <div class="form-group"> <label for="username">Username</label> <input type="email" class="form-control underlined" name="username" id="username" placeholder="Your email address" required> </div>
-                    <div class="form-group"> <label for="password">Password</label> <input type="password" class="form-control underlined" name="password" id="password" placeholder="Your password" required> </div>
+                    <div class="form-group"> <label for="username">E-mail</label> <input type="email" class="form-control underlined" name="username" id="username" placeholder="Seu endereço de e-mail" required> </div>
+                    <div class="form-group"> <label for="password">Senha</label> <input type="password" class="form-control underlined" name="password" id="password" placeholder="Sua senha" required> </div>
                     <div class="form-group"> <label for="remember">
     <input class="checkbox" id="remember" type="checkbox"> 
-    <span>Remember me</span>
-  </label> <a href="reset.html" class="forgot-btn pull-right">Forgot password?</a> </div>
+    <span>Relembre-me</span>
+  </label> <%= link_to "Esqueci senha", reset_path, class:"forgot-btn pull-right" %></div>
                     <div class="form-group"> <button type="submit" class="btn btn-block btn-primary">Login</button> </div>
                     <div class="form-group">
-                        <p class="text-muted text-xs-center">Do not have an account? <a href="signup.html">Sign Up!</a></p>
+                        <p class="text-muted text-xs-center">Não tem cadastro? <%= link_to "Cadastre-se", signup_path %></p>
                     </div>
                 </form>
             </div>
-        </div>
-        <div class="text-xs-center">
-            <a href="index.html" class="btn btn-secondary rounded btn-sm"> <i class="fa fa-arrow-left"></i> Back to dashboard </a>
         </div>
     </div>
 </div>

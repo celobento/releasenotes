@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<% provide(:template, "admin" ) %>
+
+<div class="card card-default">
+  <div class="card-header bordered">
+    <div class="header-block">
+      <h3 class="title">Perfil</h3>
+    </div>
+  </div>
+  <div class="card-block">
+<p>
+  <strong>Nome:</strong>
+  <output type="text" class="form-control" id="nome" ><%= @perfil.nome %></output>
+</p>
+
+<p>
+  <strong>Role:</strong>
+  <output type="text" class="form-control" id="nome" ><%= @perfil.role %></output>
+</p>
+
+<p>
+  <strong>Descrcicao:</strong>
+  <output type="text" class="form-control" id="nome" ><%= @perfil.descrcicao %></output>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <output type="text" class="form-control" id="nome" ><%= @perfil.status %></output>
+</p>
+
+</div>
+
+
+
+  <div class="card-footer">
+    <div class="row">
+      <div class="col">
+        <%= link_to 'Editar', edit_perfil_path(@perfil), class:"btn btn-warning active" %>
+        <%= link_to 'Voltar', perfis_path, class:"btn btn-info active" %>
+      </div>
+      
+    </div>
+  </div>
+</div>

@@ -1,0 +1,63 @@
+<% provide(:title, "#{texto_da_acao} Usuario" ) %>
+
+<% provide(:template, "admin" ) %>
+
+<%= form_for(@usuario) do |f| %>
+
+<style>
+  .button-modal{
+    padding: 10px 0px;
+  }
+</style>
+
+<div class="card card-default">
+  <div class="card-header bordered">
+    <div class="header-block">
+      <h3 class="title">Sistema</h3>
+    </div>
+  </div>
+  <div class="card-block">
+
+  <div class="form-group">
+    <%= f.label :nome %><br>
+    <%= f.text_field :nome, class:"form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :email %><br>
+    <%= f.text_field :email, class:"form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :perfil_id %><br>
+    <%= f.collection_select :perfil_id, @perfis, :id, :nome , {}, class:"form-control" %>
+  </div>
+  <div class="form-group">
+     <%= f.label :password %>
+     <%= f.password_field :password, class:"form-control" %>
+  </div>
+  <div class="form-group">
+     <%= f.label :password_confirmation, "Confirmation" %>
+     <%= f.password_field :password_confirmation, class:"form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :status %><br>
+    <%= f.check_box :status %>
+  </div>
+  
+  </div>
+   <div class="card-footer">
+    <div class="row">
+      <div class="col">
+       <%= f.submit texto_da_acao, class:"btn btn-primary" %>
+        <%= link_to 'Voltar', usuarios_path, class:"btn btn-info active" %>
+        <% if @usuario.new_record? == false %>
+          <%= link_to 'Deletar', @usuario, method: :delete, data: { confirm: 'Tem Certeza?' }, class:"btn btn-danger active" %>
+        <% end %>
+        <!--%= button_tag(type: 'submit', class: "btn btn-primary") do %>
+         <i class="glyphicon glyphicon-ok"></i> Criar
+        < end %-->
+      </div>
+      
+    </div>
+  </div>
+</div>
+<% end %>

@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<% provide(:template, "admin" ) %>
+
+<div class="card card-default">
+  <div class="card-header bordered">
+    <div class="header-block">
+      <h3 class="title">Usuario</h3>
+    </div>
+  </div>
+  <div class="card-block">
+
+<p>
+  <strong>Nome:</strong>
+  <output type="text" class="form-control" id="nome" ><%= @usuario.nome %></output>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <output type="text" class="form-control" id="nome" ><%= @usuario.email %></output>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <output type="text" class="form-control" id="nome" ><%= @usuario.status %></output>
+</p>
+
+<p>
+  <strong>Perfil:</strong>
+  <output type="text" class="form-control" id="nome" ><%= @usuario.perfil.nome %></output>
+</p>
+
+</div>
+
+  <div class="card-footer">
+    <div class="row">
+      <div class="col">
+        <%= link_to 'Editar', edit_usuario_path(@usuario), class:"btn btn-warning active" %>
+        <%= link_to 'Voltar', usuarios_path, class:"btn btn-info active" %>
+      </div>
+      
+    </div>
+  </div>
+</div>

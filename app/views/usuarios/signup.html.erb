@@ -1,5 +1,3 @@
-
-<%= form_for(:session, url: login_path) do |f| %>
 <div class="auth">
             <div class="auth-container">
                 <div class="card">
@@ -16,31 +14,21 @@
                     <div class="auth-content">
                         <p class="text-xs-center">CADASTRE-SE</p>
                         <form id="signup-form" action="/index.html" method="GET" novalidate="">
-                            <div class="form-group"> 
-                                <label for="firstname">Nome</label>
+                            <div class="form-group"> <label for="firstname">Nome</label>
                                 <div class="row">
-                                    <div class="col-sm-12">
-                                        <%= f.text_field :nome, class:"form-control underlined", placeholder:"Nome Completo" %>
-                                    </div>
+                                    <div class="col-sm-12"> <input type="text" class="form-control underlined" name="firstname" id="firstname" placeholder="Nome Completo" required=""> </div>
+                                    <!--div class="col-sm-6"> <input type="text" class="form-control underlined" name="lastname" id="lastname" placeholder="Enter lastname" required=""> </div-->
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="email">Email</label> 
-                                <%= f.text_field :email, class:"form-control underlined", placeholder:"Endereço de E-mail" %>
-                            </div>
-                            <div class="form-group">
-                                <label for="password">Senha</label>
+                            <div class="form-group"> <label for="email">Email</label> <input type="email" class="form-control underlined" name="email" id="email" placeholder="Endereço de E-mail" required=""> </div>
+                            <div class="form-group"> <label for="password">Senha</label>
                                 <div class="row">
-                                    <div class="col-sm-6">
-                                        <%= f.password_field :password, class:"form-control underlined", placeholder:"Digite Senha" %>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <%= f.password_field :password_confirmation, class:"form-control underlined", placeholder:"Re-digite senha" %>
-                                    </div>
+                                    <div class="col-sm-6"> <input type="password" class="form-control underlined" name="password" id="password" placeholder="Digite Senha" required=""> </div>
+                                    <div class="col-sm-6"> <input type="password" class="form-control underlined" name="retype_password" id="retype_password" placeholder="Re-digite senha" required=""> </div>
                                 </div>
                             </div>
                             <div class="form-group"> <label for="agree">
-                                <%= f.check_box :aceita_termo, class:"checkbox" %>
+                                <input class="checkbox" name="agree" id="agree" type="checkbox" required=""> 
                                 <span>Aceito os termos de acesso</span>
                               </label> </div>
                             <div class="form-group"> <button type="submit" class="btn btn-block btn-primary">Cadastrar</button> </div>
@@ -52,5 +40,3 @@
                 </div>
             </div>
         </div>
-
-<% end %>

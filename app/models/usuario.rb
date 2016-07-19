@@ -9,4 +9,10 @@ class Usuario < ActiveRecord::Base
                     uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }
+  
+  # Forgets a user.
+  def forget
+      update_attribute(:relembreme_digest, nil)
+  end
+  
 end

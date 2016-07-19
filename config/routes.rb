@@ -16,9 +16,11 @@ Rails.application.routes.draw do
   resources :perfis
   resources :usuarios
   
-  get 'login' => 'sessions#new'
-  get 'signup' => 'sessions#signup'
-  get 'reset' => 'sessions#reset'
+  get    'login'   => 'sessions#new'
+  post   'login'   => 'sessions#create'
+  get    'signup'  => 'sessions#signup'
+  get    'reset'   => 'sessions#reset'
+  delete 'logout'  => 'sessions#destroy'
   
   
   get 'sessions/new'

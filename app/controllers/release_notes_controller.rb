@@ -6,6 +6,7 @@ class ReleaseNotesController < ApplicationController
   def index
     @release_notes = ReleaseNote.paginate(page: params[:page], :per_page => 2)
     @release_notes_all = ReleaseNote.all
+    current_usuario
   end
 
   # GET /release_notes/1

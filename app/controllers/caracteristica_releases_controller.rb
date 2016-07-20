@@ -2,6 +2,9 @@ class CaracteristicaReleasesController < ApplicationController
   
   before_action :set_caracteristica_release, only: [:destroy]
   before_action :release_note_params, only: [:new]
+  before_action :current_usuario
+  before_action :logged_in_usuario
+  
   def index
   end
   

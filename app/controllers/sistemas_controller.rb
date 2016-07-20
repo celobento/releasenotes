@@ -1,6 +1,8 @@
 class SistemasController < ApplicationController
   before_action :set_sistema, only: [:show, :edit, :update, :destroy]
-
+  before_action :current_usuario
+  before_action :logged_in_usuario
+  
   # GET /sistemas
   # GET /sistemas.json
   def index

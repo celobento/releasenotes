@@ -14,9 +14,9 @@
             </header>
             <div class="auth-content">
                 <p class="text-xs-center">LOGIN</p>
-                <% flash.each do |message_type, message| %>
-                    <div class="alert alert-<%= message_type %>"><%= message %></div>
-                  <% end %>
+                    <% flash.each do |message_type, message| %>
+                        <div class="alert alert-<%= message_type %>"><%= message %></div>
+                    <% end %>
                     <!--form id="login-form" action="/index.html" method="GET" novalidate=""-->
                     <%= form_for(:session, url: login_path) do |f| %>
                         <div class="form-group">
@@ -34,8 +34,8 @@
                                 <input class="checkbox" id="remember" type="checkbox">
                                 <span>Relembre-me</span>
                             </label> 
-                            <!--%= link_to "Esqueci senha", reset_path, class:"forgot-btn pull-right" %-->
                             <%= f.check_box :relembre_me, class:"checkbox" %>
+                            <%= link_to "Esqueci senha", reset_path, class:"forgot-btn pull-right" %>
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-block btn-primary">Login</button>

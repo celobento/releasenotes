@@ -1,5 +1,8 @@
 class UsuariosController < ApplicationController
   before_action :set_usuario, only: [:show, :edit, :update, :destroy]
+  before_action :current_usuario,   only: [:show, :edit, :update, :index]
+  before_action :logged_in_usuario,   only: [:show, :edit, :update, :index]
+  before_action :correct_usuario,   only: [:show, :edit, :update]
 
   # GET /usuarios
   # GET /usuarios.json
@@ -62,6 +65,52 @@ class UsuariosController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def signup
+    usuario_params_signup
+    @usuario = Usuario.new(nome: params[:session][:nome] , email: params[:session][:email], password: params[:session][:password], password_confirmation: params[:session][:password_confirmation])
+    @usuario.status = true
+    @usuario.perfil_id = 1
+    
+    aceita_termo = params[:session][:aceita_termo]
+    
+    if aceita_termo == "1"
+    
+      if @usuario.save
+        flash[:success] = "Efetue login !"
+        redirect_to login_path
+      else
+        
+      end
+      
+    else
+      
+      flash[:warning] = "Aceite os Termos !"
+      redirect_to login_path
+
+    end
+    
+    #usuario = Usuario.find_by(email: params[:session][:email].downcase)
+    #if usuario && usuario.authenticate(params[:session][:password])
+      #log_in usuario
+      #params[:session][:remember_me] == '1' ? remember(usuario) : forget(usuario)
+      #redirect_back_or usuario
+      #if usuario.activated?
+    #    log_in usuario
+    #    params[:session][:remember_me] == '1' ? remember(usuario) : forget(usuario)
+    #    flash[:success] = 'Bem-vindo ao sistema!' # Not quite right!
+    #    redirect_back_or release_notes_path
+      #else
+      #  message  = "Account not activated. "
+      #  message += "Check your email for the activation link."
+      #  flash[:warning] = message
+      #  redirect_to root_url
+      #end
+    #else
+    #  flash[:danger] = 'Combinação de e-mail/senha inválida' # Not quite right!
+    #  render 'new'
+    #end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -72,5 +121,17 @@ class UsuariosController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def usuario_params
       params.require(:usuario).permit(:nome, :email, :status, :perfil_id, :password, :password_confirmation)
+    end
+    
+    def usuario_params_signup
+      params.require(:session).permit(:nome, :email, :password, :password_confirmation, :aceita_termo)
+    end
+    
+    # Confirms the correct usuario.
+    def correct_usuario
+      @usuario = Usuario.find(params[:id])
+      #redirect_to(root_url) unless @usuario == current_usuario
+      flash[:warning] = "Acesso restrito !"
+      redirect_to(release_notes_path) unless current_usuario?(@usuario)
     end
 end

@@ -1,5 +1,5 @@
 
-<%= form_for(:session, url: login_path) do |f| %>
+
 <div class="auth">
             <div class="auth-container">
                 <div class="card">
@@ -15,7 +15,7 @@
       </h1> </header>
                     <div class="auth-content">
                         <p class="text-xs-center">CADASTRE-SE</p>
-                        <form id="signup-form" action="/index.html" method="GET" novalidate="">
+                        <%= form_for(:session, url: signup_path) do |f| %>
                             <div class="form-group"> 
                                 <label for="firstname">Nome</label>
                                 <div class="row">
@@ -39,18 +39,20 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group"> <label for="agree">
-                                <%= f.check_box :aceita_termo, class:"checkbox" %>
-                                <span>Aceito os termos de acesso</span>
-                              </label> </div>
+                            
+                            <div class="form-group"> 
+                                
+                                <label for="aceita_termo">
+                                    <%= f.check_box :aceita_termo %>
+                                    <span>Aceito os termos de acesso</span>
+                                </label>
+                             </div>
                             <div class="form-group"> <button type="submit" class="btn btn-block btn-primary">Cadastrar</button> </div>
                             <div class="form-group">
                                 <p class="text-muted text-xs-center">Já tem um cadastro? <%= link_to "Login", login_path %></p>
                             </div>
-                        </form>
+                        <% end %>
                     </div>
                 </div>
             </div>
         </div>
-
-<% end %>

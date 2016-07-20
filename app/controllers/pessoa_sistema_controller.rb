@@ -1,6 +1,8 @@
 class PessoaSistemaController < ApplicationController
   
   #before_action :set_produto
+  before_action :current_usuario
+  before_action :logged_in_usuario
   
   def new
   end

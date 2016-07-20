@@ -1,12 +1,14 @@
 class ReleaseNotesController < ApplicationController
   before_action :set_release_note, only: [:show, :edit, :update, :destroy]
-
+  before_action :current_usuario
+  before_action :logged_in_usuario
+  
   # GET /release_notes
   # GET /release_notes.json
   def index
     @release_notes = ReleaseNote.paginate(page: params[:page], :per_page => 2)
     @release_notes_all = ReleaseNote.all
-    current_usuario
+    
   end
 
   # GET /release_notes/1

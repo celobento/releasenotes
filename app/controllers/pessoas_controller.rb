@@ -1,5 +1,7 @@
 class PessoasController < ApplicationController
   before_action :set_pessoa, only: [:show, :edit, :update, :destroy]
+  before_action :current_usuario
+  before_action :logged_in_usuario
 
   # GET /pessoas
   # GET /pessoas.json

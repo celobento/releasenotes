@@ -2,6 +2,8 @@ class IntegracoesController < ApplicationController
   
   before_action :set_integracao, only: [:destroy]
   before_action :release_note_params, only: [:new]
+  before_action :current_usuario
+  before_action :logged_in_usuario
   
   def new
     @integracao = Integracao.new

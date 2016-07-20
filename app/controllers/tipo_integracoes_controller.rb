@@ -1,5 +1,7 @@
 class TipoIntegracoesController < ApplicationController
   before_action :set_tipo_integracao, only: [:show, :edit, :update, :destroy]
+  before_action :current_usuario
+  before_action :logged_in_usuario
 
   # GET /tipo_integracoes
   # GET /tipo_integracoes.json

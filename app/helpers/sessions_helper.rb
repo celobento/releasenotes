@@ -54,4 +54,23 @@ module SessionsHelper
         end
     end
     
+    # Returns true if the given usuario is the current usuario.
+    def current_usuario?(usuario)
+        usuario == current_usuario
+    end
+    
+    # Confirms a logged-in usuario.
+    def logged_in_usuario
+      unless logged_in?
+      store_location
+        flash[:warning] = "Efetue Login."
+        redirect_to login_url
+      end
+    end
+    
+    # Stores the URL trying to be accessed.
+    def store_location
+        session[:forwarding_url] = request.url if request.get?
+    end
+    
 end

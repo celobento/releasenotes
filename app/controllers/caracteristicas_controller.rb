@@ -1,6 +1,8 @@
 class CaracteristicasController < ApplicationController
   
   before_action :set_caracteristica, only: [:show, :edit, :update, :destroy]
+  before_action :current_usuario
+  before_action :logged_in_usuario
   
   def index
     @caracteristicas = Caracteristica.paginate(page: params[:page], :per_page => 10)

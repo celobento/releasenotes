@@ -1,7 +1,8 @@
 class DefeitosController < ApplicationController
   before_action :set_defeito, only: [:show, :edit, :update, :destroy]
-  
   before_action :release_note_params, only: [:new]
+  before_action :current_usuario
+  before_action :logged_in_usuario
 
   # GET /defeitos
   # GET /defeitos.json

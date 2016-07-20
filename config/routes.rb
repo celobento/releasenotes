@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   get    'signup'  => 'sessions#signup'
+  post   'signup'  => 'usuarios#signup'
   get    'reset'   => 'sessions#reset'
   delete 'logout'  => 'sessions#destroy'
   

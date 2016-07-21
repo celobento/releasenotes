@@ -66,28 +66,47 @@ class UsuariosController < ApplicationController
     end
   end
   
+  def cadastro
+    @usuario = Usuario.new
+  end
+  
   def signup
+    
     usuario_params_signup
-    @usuario = Usuario.new(nome: params[:session][:nome] , email: params[:session][:email], password: params[:session][:password], password_confirmation: params[:session][:password_confirmation])
-    @usuario.status = true
-    @usuario.perfil_id = 1
+    usuario_existente = Usuario.find_by(email: params[:session][:email].downcase)
     
-    aceita_termo = params[:session][:aceita_termo]
+    if usuario_existente == nil
     
-    if aceita_termo == "1"
-    
-      if @usuario.save
-        flash[:success] = "Efetue login !"
-        redirect_to login_path
+      @usuario = Usuario.new(nome: params[:session][:nome] , email: params[:session][:email], password: params[:session][:password], password_confirmation: params[:session][:password_confirmation])
+      @usuario.status = true
+      @usuario.perfil_id = 1
+      
+      aceita_termo = params[:session][:aceita_termo]
+      
+      if aceita_termo == "1"
+      
+        if @usuario.save
+          flash[:success] = "Efetue login !"
+          redirect_to login_path
+        else
+          
+        end
+        
       else
         
+        flash[:warning] = "Aceite os Termos !"
+        #redirect_to login_path
+        #redirect_to signup_path, action: :signup
+        #render template: "sessions/signup.html.erb"
+        render :signup
+  
       end
-      
+    
     else
       
-      flash[:warning] = "Aceite os Termos !"
+      flash[:warning] = "E-mail já cadastrado !"
       redirect_to login_path
-
+    
     end
     
     #usuario = Usuario.find_by(email: params[:session][:email].downcase)

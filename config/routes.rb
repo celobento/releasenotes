@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   resources :perfis
   resources :usuarios
   
+  #get    'cadastro'  => 'usuarios#cadastro'
+  #post   'signup'  => 'usuarios#signup'
+  
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   get    'signup'  => 'sessions#signup'

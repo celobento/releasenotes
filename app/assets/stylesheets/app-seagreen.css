@@ -2796,7 +2796,7 @@ pre {
       .header .header-block-nav .notifications-dropdown-menu:before, .header .header-block-nav .notifications-dropdown-menu:after {
         right: 107px; } }
 
-.header .header-block-nav .profile .img {
+.header .header-block-nav .profile .gravatar {
   display: inline-block;
   width: 30px;
   height: 30px;
